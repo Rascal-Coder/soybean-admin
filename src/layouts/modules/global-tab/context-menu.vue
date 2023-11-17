@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
   disabledKeys: () => []
 });
 
-const visible = defineModel<boolean>('visible');
+const visible = defineModel<boolean>('visible', { default: false });
 
 const { removeTab, clearTabs, clearLeftTabs, clearRightTabs } = useTabStore();
 const { SvgIconVNode } = useSvgIconRender(SvgIcon);

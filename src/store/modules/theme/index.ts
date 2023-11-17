@@ -76,13 +76,15 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
   function toggleThemeScheme() {
     const themeSchemes: UnionKey.ThemeScheme[] = ['light', 'dark', 'auto'];
 
-    const index = themeSchemes.findIndex(item => item === settings.value.themeScheme);
+    const currentThemeScheme = settings.value.themeScheme;
 
-    const nextIndex = index === themeSchemes.length - 1 ? 0 : index + 1;
+    const currentIndex = themeSchemes.findIndex(item => item === currentThemeScheme);
 
-    const nextThemeScheme = themeSchemes[nextIndex];
+    const targgetIndex = (currentIndex + 1) % themeSchemes.length;
 
-    setThemeScheme(nextThemeScheme);
+    const targgetThemeScheme = themeSchemes[targgetIndex];
+
+    setThemeScheme(targgetThemeScheme);
   }
 
   /**

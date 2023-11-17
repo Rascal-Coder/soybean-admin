@@ -14,7 +14,6 @@ const domRef = ref<HTMLElement | null>(null);
 
 function initClipboard() {
   if (!domRef.value) return;
-
   const clipboard = new Clipboard(domRef.value, {
     text: () => getClipboardText()
   });
@@ -28,7 +27,6 @@ function getClipboardText() {
   const reg = /"\w+":/g;
 
   const json = themeStore.settingsJson;
-
   return json.replace(reg, match => match.replace(/"/g, ''));
 }
 

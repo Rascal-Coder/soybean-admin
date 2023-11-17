@@ -32,7 +32,7 @@ const naiveDateLocale = computed(() => {
     class="h-full"
   >
     <AppProvider>
-      <RouterView class="bg-layout" />
+      <RouterView />
     </AppProvider>
   </NConfigProvider>
 </template>

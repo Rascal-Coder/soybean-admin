@@ -179,8 +179,10 @@ declare namespace App {
 
     type ThemeColorKey = keyof ThemeColor;
 
+    type CombinedThemeColorKey = ThemeColorKey | `${ThemeColorKey}-${ColorPaletteNumber}`;
+
     type ThemePaletteColor = {
-      [key in ThemeColorKey | `${ThemeColorKey}-${ColorPaletteNumber}`]: string;
+      [key in CombinedThemeColorKey]: string;
     };
 
     type BaseToken = Record<string, Record<string, string>>;

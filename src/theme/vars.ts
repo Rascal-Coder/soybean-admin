@@ -10,7 +10,8 @@ function createColorPaletteVars() {
   colors.forEach(color => {
     colorPaletteVar[color] = `rgb(var(--${color}-color))`;
     colorPaletteNumbers.forEach(number => {
-      colorPaletteVar[`${color}-${number}`] = `rgb(var(--${color}-${number}-color))`;
+      const paletteVarKey = `${color}-${number}` as App.Theme.CombinedThemeColorKey;
+      colorPaletteVar[`${paletteVarKey}`] = `rgb(var(--${paletteVarKey}-color))`;
     });
   });
 
