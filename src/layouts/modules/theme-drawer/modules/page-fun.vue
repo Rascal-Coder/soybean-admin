@@ -104,10 +104,20 @@ function translateOptions(options: Common.Option<string>[]) {
       <NInput v-model:value="themeStore.footer.dates" size="small" class="!w-120px" />
     </SettingItem>
     <SettingItem v-if="themeStore.footer.visible" key="7-3" :label="$t('theme.footer.company')">
-      <NInput v-model:value="themeStore.footer.company" size="small" class="!w-120px" />
+      <NTooltip :show-arrow="false" trigger="click" placement="left" display-directive="show">
+        <template #trigger>
+          <NInput v-model:value="themeStore.footer.company" size="small" class="!w-120px" />
+        </template>
+        {{ themeStore.footer.company }}
+      </NTooltip>
     </SettingItem>
     <SettingItem v-if="themeStore.footer.visible" key="7-3" :label="$t('theme.footer.website')">
-      <NInput v-model:value="themeStore.footer.website" size="small" class="!w-120px" />
+      <NTooltip :show-arrow="false" trigger="click" placement="left" display-directive="show">
+        <template #trigger>
+          <NInput v-model:value="themeStore.footer.website" size="small" class="!w-120px" />
+        </template>
+        {{ themeStore.footer.website }}
+      </NTooltip>
     </SettingItem>
     <SettingItem
       v-if="themeStore.footer.visible && layoutMode === 'horizontal-mix'"
