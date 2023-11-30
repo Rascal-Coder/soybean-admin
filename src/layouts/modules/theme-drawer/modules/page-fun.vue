@@ -100,9 +100,18 @@ function translateOptions(options: Common.Option<string>[]) {
     <SettingItem v-if="themeStore.footer.visible" key="7-2" :label="$t('theme.footer.height')">
       <NInputNumber v-model:value="themeStore.footer.height" size="small" :step="1" class="w-120px" />
     </SettingItem>
+    <SettingItem v-if="themeStore.footer.visible" key="7-3" :label="$t('theme.footer.dates')">
+      <NInput v-model:value="themeStore.footer.dates" size="small" class="!w-120px" />
+    </SettingItem>
+    <SettingItem v-if="themeStore.footer.visible" key="7-3" :label="$t('theme.footer.company')">
+      <NInput v-model:value="themeStore.footer.company" size="small" class="!w-120px" />
+    </SettingItem>
+    <SettingItem v-if="themeStore.footer.visible" key="7-3" :label="$t('theme.footer.website')">
+      <NInput v-model:value="themeStore.footer.website" size="small" class="!w-120px" />
+    </SettingItem>
     <SettingItem
       v-if="themeStore.footer.visible && layoutMode === 'horizontal-mix'"
-      key="7-3"
+      key="7-4"
       :label="$t('theme.footer.right')"
     >
       <NSwitch v-model:value="themeStore.footer.right" />

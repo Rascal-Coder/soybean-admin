@@ -163,6 +163,18 @@ declare namespace App {
          * whether float the footer to the right when the layout is 'horizontal-mix'
          */
         right: boolean;
+        /**
+         * footer dates
+         */
+        dates: string;
+        /**
+         * footer company
+         */
+        company: string;
+        /**
+         * footer website
+         */
+        website: string;
       };
     }
 
@@ -414,6 +426,9 @@ declare namespace App {
           fixed: string;
           height: string;
           right: string;
+          dates: string;
+          company: string;
+          website: string;
         };
         themeDrawerTitle: string;
         pageFunTitle: string;

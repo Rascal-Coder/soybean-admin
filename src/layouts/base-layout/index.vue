@@ -106,6 +106,7 @@ setupMixMenuContext();
     :footer-visible="themeStore.footer.visible"
     :fixed-footer="themeStore.footer.fixed"
     :right-footer="themeStore.footer.right"
+    :footer-height="themeStore.footer.height"
   >
     <template #header>
       <GlobalHeader v-bind="headerProps" />

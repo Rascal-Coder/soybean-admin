@@ -45,6 +45,9 @@ export const themeSettings: App.Theme.ThemeSetting = {
     visible: true,
     fixed: false,
     height: 48,
+    dates: '2023-11',
+    company: 'soybean-admin',
+    website: 'https://github.com/honghuangdc/soybean-admin',
     right: true
   }
 };

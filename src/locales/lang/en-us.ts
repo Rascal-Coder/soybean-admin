@@ -92,7 +92,10 @@ const local: App.I18n.Schema = {
       visible: 'Footer Visible',
       fixed: 'Fixed Footer',
       height: 'Footer Height',
-      right: 'Right Footer'
+      right: 'Right Footer',
+      dates: 'Dates',
+      company: 'Company',
+      website: 'Website'
     },
     themeDrawerTitle: 'Theme Configuration',
     pageFunTitle: 'Page Function',
