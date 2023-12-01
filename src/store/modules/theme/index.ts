@@ -134,8 +134,6 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
 
   // watch store
   scope.run(() => {
-    // watch dark mode
-
     /**
      * watch dark mode
      * themeColors change, update css vars
