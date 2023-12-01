@@ -28,7 +28,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  class: 'h-36px text-icon',
+  class: '!h-36px !text-icon',
   icon: '',
   tooltipContent: '',
   tooltipPlacement: 'bottom'
@@ -58,24 +58,21 @@ const cls = computed(() => {
 <template>
   <!-- define component: Button -->
   <DefineButton v-slot="{ $slots, className }">
-    <NButton quaternary :class="className">
-      <div class="flex-center gap-8px">
+    <ElButton text :class="className">
+      <div class="flex-center">
         <component :is="$slots.default" />
       </div>
-    </NButton>
+    </ElButton>
   </DefineButton>
 
   <!-- template -->
-  <NTooltip v-if="tooltipContent" :placement="tooltipPlacement">
-    <template #trigger>
-      <Button :class-name="cls" v-bind="$attrs">
-        <slot>
-          <SvgIcon :icon="icon" />
-        </slot>
-      </Button>
-    </template>
-    {{ tooltipContent }}
-  </NTooltip>
+  <ElTooltip v-if="tooltipContent" :placement="tooltipPlacement" :content="tooltipContent">
+    <Button :class-name="cls" v-bind="$attrs">
+      <slot>
+        <SvgIcon :icon="icon" />
+      </slot>
+    </Button>
+  </ElTooltip>
   <Button v-else :class-name="cls" v-bind="$attrs">
     <slot>
       <SvgIcon :icon="icon" />

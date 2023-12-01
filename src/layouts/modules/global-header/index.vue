@@ -61,7 +61,12 @@ const headerMenus = computed(() => {
     </div>
     <div class="flex-y-center justify-end h-full">
       <FullScreen v-if="!appStore.isMobile" :full="isFullscreen" @click="toggle" />
-      <LangSwitch :lang="appStore.locale" :lang-options="appStore.localeOptions" @change-lang="appStore.changeLocale" />
+      <LangSwitch
+        :lang="appStore.locale"
+        show-tooltip
+        :lang-options="appStore.localeOptions"
+        @change-lang="appStore.changeLocale"
+      />
       <ThemeSchemaSwitch
         :theme-schema="themeStore.themeScheme"
         :is-dark="themeStore.darkMode"

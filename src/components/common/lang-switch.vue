@@ -22,7 +22,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  showTooltip: true
+  showTooltip: false
 });
 
 type Emits = {
