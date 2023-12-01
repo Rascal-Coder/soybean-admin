@@ -92,7 +92,10 @@ const local: App.I18n.Schema = {
       visible: '显示底部',
       fixed: '固定底部',
       height: '底部高度',
-      right: '底部局右'
+      right: '底部局右',
+      company: '公司',
+      website: '网址',
+      dates: '时间'
     },
     themeDrawerTitle: '主题配置',
     pageFunTitle: '页面功能',
