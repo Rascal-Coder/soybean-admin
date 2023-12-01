@@ -3,16 +3,17 @@ import { reactive } from 'vue';
 import { $t } from '@/locales';
 import { loginModuleRecord } from '@/constants/app';
 import { useRouterPush } from '@/hooks/common/router';
-import { useNaiveForm, useFormRules } from '@/hooks/common/form';
+import { useEleForm, useFormRules } from '@/hooks/common/form';
 import { useAuthStore } from '@/store/modules/auth';
-
+import { ElCheckbox } from 'element-plus';
+import type { FormRules } from 'element-plus';
 defineOptions({
   name: 'PwdLogin'
 });
 
 const authStore = useAuthStore();
 const { toggleLoginModule } = useRouterPush();
-const { formRef, validate } = useNaiveForm();
+const { formRef, validate } = useEleForm();
 const { constantRules } = useFormRules();
 
 interface FormModel {
@@ -25,10 +26,10 @@ const model: FormModel = reactive({
   password: '123456'
 });
 
-const rules: Record<keyof FormModel, App.Global.FormRule[]> = {
+const rules = reactive<FormRules<typeof model>>({
   userName: constantRules.userName,
   password: constantRules.pwd
-};
+});
 
 async function handleSubmit() {
   await validate();
@@ -37,35 +38,31 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <NForm ref="formRef" :model="model" :rules="rules" size="large" :show-label="false">
-    <NFormItem path="userName">
-      <NInput v-model:value="model.userName" :placeholder="$t('page.login.common.userNamePlaceholder')" />
-    </NFormItem>
-    <NFormItem path="password">
-      <NInput
-        v-model:value="model.password"
-        type="password"
-        :placeholder="$t('page.login.common.passwordPlaceholder')"
-      />
-    </NFormItem>
-    <NSpace :vertical="true" :size="24">
+  <ElForm ref="formRef" size="large" :model="model" :rules="rules">
+    <ElFormItem prop="userName">
+      <ElInput v-model="model.userName" :placeholder="$t('page.login.common.userNamePlaceholder')" />
+    </ElFormItem>
+    <ElFormItem prop="password">
+      <ElInput v-model="model.password" type="password" :placeholder="$t('page.login.common.passwordPlaceholder')" />
+    </ElFormItem>
+    <ElSpace direction="vertical" :size="24" fill class="w-full">
       <div class="flex-y-center justify-between">
-        <NCheckbox>{{ $t('page.login.pwdLogin.rememberMe') }}</NCheckbox>
-        <NButton quaternary>{{ $t('page.login.pwdLogin.forgetPassword') }}</NButton>
+        <ElCheckbox>{{ $t('page.login.pwdLogin.rememberMe') }}</ElCheckbox>
+        <ElButton text>{{ $t('page.login.pwdLogin.forgetPassword') }}</ElButton>
       </div>
-      <NButton type="primary" size="large" block round :loading="authStore.loginLoading" @click="handleSubmit">
+      <ElButton type="primary" size="large" block round :loading="authStore.loginLoading" @click="handleSubmit">
         {{ $t('common.confirm') }}
-      </NButton>
+      </ElButton>
       <div class="flex-y-center justify-between gap-12px">
-        <NButton class="flex-1" block @click="toggleLoginModule('code-login')">
+        <ElButton class="flex-1" block @click="toggleLoginModule('code-login')">
           {{ $t(loginModuleRecord['code-login']) }}
-        </NButton>
-        <NButton class="flex-1" block @click="toggleLoginModule('register')">
+        </ElButton>
+        <ElButton class="flex-1" block @click="toggleLoginModule('register')">
           {{ $t(loginModuleRecord.register) }}
-        </NButton>
+        </ElButton>
       </div>
-    </NSpace>
-  </NForm>
+    </ElSpace>
+  </ElForm>
 </template>
 
 <style scoped></style>

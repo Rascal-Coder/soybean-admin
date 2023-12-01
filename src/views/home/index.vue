@@ -1,9 +1,8 @@
-<script setup lang="ts"></script>
-
 <template>
-  <div>
-    <NCalendar />
-  </div>
+  <el-calendar v-model="value" />
 </template>
 
-<style scoped></style>
+<script lang="ts" setup>
+import { ref } from 'vue';
+const value = ref(new Date());
+</script>

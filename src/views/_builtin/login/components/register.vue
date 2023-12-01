@@ -10,7 +10,23 @@ const { toggleLoginModule } = useRouterPush();
 </script>
 
 <template>
-  <NForm size="large" :show-label="false">
+  <ElForm ref="formRef" size="large">
+    <ElFormItem prop="userName">
+      <ElInput :placeholder="$t('page.login.common.phonePlaceholder')" />
+    </ElFormItem>
+    <ElFormItem>
+      <ElInput type="password" :placeholder="$t('page.login.common.codePlaceholder')" />
+    </ElFormItem>
+    <ElSpace direction="vertical" :size="18" class="w-full" fill>
+      <ElButton type="primary" size="large" round>
+        {{ $t('common.confirm') }}
+      </ElButton>
+      <ElButton size="large" round @click="toggleLoginModule('pwd-login')">
+        {{ $t('page.login.common.back') }}
+      </ElButton>
+    </ElSpace>
+  </ElForm>
+  <!-- <NForm size="large" :show-label="false">
     <NFormItem>
       <NInput :placeholder="$t('page.login.common.phonePlaceholder')" />
     </NFormItem>
@@ -25,7 +41,7 @@ const { toggleLoginModule } = useRouterPush();
         {{ $t('page.login.common.back') }}
       </NButton>
     </NSpace>
-  </NForm>
+  </NForm> -->
 </template>
 
 <style scoped></style>

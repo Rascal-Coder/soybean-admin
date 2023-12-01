@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { $t } from '@/locales';
 import { useRouterPush } from '@/hooks/common/router';
+import { ElForm, ElInput, ElSpace } from 'element-plus';
 
 defineOptions({
   name: 'CodeLogin'
@@ -10,22 +11,25 @@ const { toggleLoginModule } = useRouterPush();
 </script>
 
 <template>
-  <NForm size="large" :show-label="false">
-    <NFormItem>
-      <NInput :placeholder="$t('page.login.common.phonePlaceholder')" />
-    </NFormItem>
-    <NFormItem>
-      <NInput :placeholder="$t('page.login.common.codePlaceholder')" />
-    </NFormItem>
-    <NSpace vertical :size="18" class="w-full">
-      <NButton type="primary" size="large" block round>
+  <ElForm size="large">
+    <ElFormItem>
+      <ElInput :placeholder="$t('page.login.common.userNamePlaceholder')" />
+    </ElFormItem>
+    <ElFormItem>
+      <ElInput :placeholder="$t('page.login.common.phonePlaceholder')" />
+    </ElFormItem>
+    <ElFormItem>
+      <ElInput :placeholder="$t('page.login.common.codePlaceholder')" />
+    </ElFormItem>
+    <ElSpace direction="vertical" :size="18" class="w-full" fill>
+      <ElButton type="primary" size="large" round>
         {{ $t('common.confirm') }}
-      </NButton>
-      <NButton size="large" block round @click="toggleLoginModule('pwd-login')">
+      </ElButton>
+      <ElButton size="large" round @click="toggleLoginModule('pwd-login')">
         {{ $t('page.login.common.back') }}
-      </NButton>
-    </NSpace>
-  </NForm>
+      </ElButton>
+    </ElSpace>
+  </ElForm>
 </template>
 
 <style scoped></style>

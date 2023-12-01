@@ -33,7 +33,7 @@ const icon = computed(() => iconMap[props.type]);
       <SvgIcon :local-icon="icon" />
     </div>
     <RouterLink to="/">
-      <NButton type="primary">{{ $t('common.backToHome') }}</NButton>
+      <ElButton type="primary">{{ $t('common.backToHome') }}</ElButton>
     </RouterLink>
   </div>
 </template>

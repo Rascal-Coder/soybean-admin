@@ -135,19 +135,20 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
   // watch store
   scope.run(() => {
     // watch dark mode
-    watch(
-      darkMode,
-      val => {
-        toggleCssDarkMode(val);
-      },
-      { immediate: true }
-    );
 
-    // themeColors change, update css vars
+    /**
+     * watch dark mode
+     * themeColors change, update css vars
+     */
     watch(
-      themeColors,
-      () => {
-        setupThemeVarsToHtml();
+      [darkMode, themeColors],
+      ([darkModeVal, themeColorsVal], [prevDarkModeVal, prevThemeColorsVal]) => {
+        if (darkModeVal !== prevDarkModeVal) {
+          toggleCssDarkMode(darkModeVal);
+        }
+        if (themeColorsVal !== prevThemeColorsVal) {
+          setupThemeVarsToHtml();
+        }
       },
       { immediate: true }
     );

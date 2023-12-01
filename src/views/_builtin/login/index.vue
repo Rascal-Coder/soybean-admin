@@ -61,7 +61,7 @@ const bgColor = computed(() => {
 <template>
   <div class="relative flex-center wh-full overflow-hidden" :style="{ backgroundColor: bgColor }">
     <WaveBg :theme-color="bgThemeColor" />
-    <NCard class="relative w-auto rd-12px z-4">
+    <ElCard class="relative w-auto z-4">
       <div class="w-400px <sm:w-300px">
         <header class="flex-y-center justify-between">
           <SystemLogo class="text-64px text-primary <sm:text-48px" />
@@ -90,7 +90,7 @@ const bgColor = computed(() => {
           </div>
         </main>
       </div>
-    </NCard>
+    </ElCard>
   </div>
 </template>
 

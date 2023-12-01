@@ -1,6 +1,7 @@
 /**
  * the global namespace for the app
  */
+
 declare namespace App {
   /**
    * theme namespace
@@ -333,14 +334,14 @@ declare namespace App {
     };
 
     /**
-     * form rule
-     */
-    type FormRule = import('naive-ui').FormItemRule;
-
-    /**
      * the global dropdown key
      */
     type DropdownKey = 'closeCurrent' | 'closeOther' | 'closeLeft' | 'closeRight' | 'closeAll';
+
+    /**
+     * the global form rule
+     */
+    type FormRule = import('element-plus').FormItemRule;
   }
 
   /**
@@ -493,6 +494,7 @@ declare namespace App {
         code: FormMsg;
         email: FormMsg;
       };
+
       dropdown: Record<Global.DropdownKey, string>;
       icon: {
         themeConfig: string;
