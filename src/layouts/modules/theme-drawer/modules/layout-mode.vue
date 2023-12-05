@@ -13,7 +13,7 @@ const themeStore = useThemeStore();
 </script>
 
 <template>
-  <NDivider>{{ $t('theme.layoutMode.title') }}</NDivider>
+  <ElDivider>{{ $t('theme.layoutMode.title') }}</ElDivider>
   <LayoutModeCard v-model:mode="themeStore.layout.mode" :disabled="appStore.isMobile">
     <template #vertical>
       <div class="layout-sider w-18px h-full"></div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PopoverPlacement } from 'naive-ui';
+import type { Placement } from 'element-plus';
 import { themeLayoutModeRecord } from '@/constants/app';
 import { $t } from '@/locales';
 
@@ -32,7 +32,7 @@ const emit = defineEmits<Emits>();
 type LayoutConfig = Record<
   UnionKey.ThemeLayoutMode,
   {
-    placement: PopoverPlacement;
+    placement: Placement;
     headerClass: string;
     menuClass: string;
     mainClass: string;
@@ -82,17 +82,14 @@ function handleChangeMode(mode: UnionKey.ThemeLayoutMode) {
       :class="[mode === key ? 'border-primary' : 'border-transparent']"
       @click="handleChangeMode(key)"
     >
-      <NTooltip :placement="item.placement">
-        <template #trigger>
-          <div
-            class="gap-6px w-96px h-64px p-6px rd-4px shadow dark:shadow-coolGray-5"
-            :class="[key.includes('vertical') ? 'flex' : 'flex-vertical']"
-          >
-            <slot :name="key"></slot>
-          </div>
-        </template>
-        {{ $t(themeLayoutModeRecord[key]) }}
-      </NTooltip>
+      <ElTooltip :placement="item.placement" :content="$t(themeLayoutModeRecord[key])">
+        <div
+          class="gap-6px w-96px h-64px p-6px rd-4px shadow dark:shadow-coolGray-5"
+          :class="[key.includes('vertical') ? 'flex' : 'flex-vertical']"
+        >
+          <slot :name="key"></slot>
+        </div>
+      </ElTooltip>
     </div>
   </div>
 </template>

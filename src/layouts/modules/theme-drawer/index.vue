@@ -15,17 +15,26 @@ const appStore = useAppStore();
 </script>
 
 <template>
-  <NDrawer v-model:show="appStore.themeDrawerVisible" display-directive="show" :width="378">
-    <NDrawerContent :title="$t('theme.themeDrawerTitle')" :native-scrollbar="false" closable>
-      <DarkMode />
-      <LayoutMode />
-      <ThemeColor />
-      <PageFun />
-      <template #footer>
-        <ConfigOperation />
-      </template>
-    </NDrawerContent>
-  </NDrawer>
+  <ElDrawer id="theme-drawer" v-model="appStore.themeDrawerVisible" append-to-body>
+    <template #header>
+      <h4>{{ $t('theme.themeDrawerTitle') }}</h4>
+    </template>
+    <DarkMode />
+    <LayoutMode />
+    <ThemeColor />
+    <PageFun />
+    <template #footer>
+      <ConfigOperation />
+    </template>
+  </ElDrawer>
 </template>
 
-<style scoped></style>
+<style lang="scss">
+#theme-drawer {
+  .el-drawer__header {
+    padding: var(--el-drawer-padding-primary) !important;
+    border-bottom: 1px var(--el-border-color) var(--el-border-style) !important;
+    margin: 0px;
+  }
+}
+</style>

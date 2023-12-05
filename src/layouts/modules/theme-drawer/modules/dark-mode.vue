@@ -4,6 +4,7 @@ import { themeSchemaRecord } from '@/constants/app';
 import { useThemeStore } from '@/store/modules/theme';
 import { $t } from '@/locales';
 import SettingItem from '../components/setting-item.vue';
+import { ElDivider } from 'element-plus';
 
 defineOptions({
   name: 'DarkMode'
@@ -29,11 +30,11 @@ const showSiderInverted = computed(() => !themeStore.darkMode && themeStore.layo
 </script>
 
 <template>
-  <NDivider>{{ $t('theme.themeSchema.title') }}</NDivider>
+  <ElDivider>{{ $t('theme.themeSchema.title') }}</ElDivider>
   <div class="flex-vertical-stretch gap-16px">
     <div class="i-flex-center">
-      <el-button-group size="large" class="!bg-[#f7fafc] dark:!bg-[#121212] rounded px-1">
-        <el-button
+      <ElButtonGroup size="large" class="!bg-[#f7fafc] dark:!bg-[#121212] rounded px-1">
+        <ElButton
           v-for="(_value, key) in themeSchemaRecord"
           :key="key"
           text
@@ -41,8 +42,8 @@ const showSiderInverted = computed(() => !themeStore.darkMode && themeStore.layo
           @click="handleSegmentChange(key)"
         >
           <SvgIcon :icon="icons[key]" class="text-icon-small text-black dark:text-white" />
-        </el-button>
-      </el-button-group>
+        </ElButton>
+      </ElButtonGroup>
     </div>
     <Transition name="sider-inverted">
       <SettingItem v-if="showSiderInverted" :label="$t('theme.sider.inverted')">

@@ -16,13 +16,13 @@ function handleUpdateColor(color: string, key: App.Theme.ThemeColorKey) {
 </script>
 
 <template>
-  <NDivider>{{ $t('theme.themeColor.title') }}</NDivider>
+  <ElDivider>{{ $t('theme.themeColor.title') }}</ElDivider>
   <div class="flex-vertical-stretch gap-12px">
     <SettingItem v-for="(_, key) in themeStore.themeColors" :key="key" :label="$t(`theme.themeColor.${key}`)">
       <template v-if="key === 'info'" #suffix>
-        <NCheckbox v-model:checked="themeStore.isInfoFollowPrimary">
+        <ElCheckbox v-model="themeStore.isInfoFollowPrimary">
           {{ $t('theme.themeColor.followPrimary') }}
-        </NCheckbox>
+        </ElCheckbox>
       </template>
       <ColorPicker
         :color="themeStore.themeColors[key]"
