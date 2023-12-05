@@ -1,3 +1,11 @@
+<!--
+ * @Author: qi yuhang qiyuhang@thinkerx.com
+ * @Date: 2023-12-01 10:38:04
+ * @LastEditors: qi yuhang qiyuhang@thinkerx.com
+ * @LastEditTime: 2023-12-05 16:33:26
+ * @FilePath: \soybean-admin\src\layouts\modules\theme-drawer\modules\config-operation.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import Clipboard from 'clipboard';
@@ -45,9 +53,9 @@ onMounted(() => {
 
 <template>
   <div class="flex justify-between w-full">
-    <NButton type="error" ghost @click="handleReset">{{ $t('theme.configOperation.resetConfig') }}</NButton>
+    <ElButton type="danger" plain @click="handleReset">{{ $t('theme.configOperation.resetConfig') }}</ElButton>
     <div ref="domRef">
-      <NButton type="primary">{{ $t('theme.configOperation.copyConfig') }}</NButton>
+      <ElButton type="primary" plain>{{ $t('theme.configOperation.copyConfig') }}</ElButton>
     </div>
   </div>
 </template>

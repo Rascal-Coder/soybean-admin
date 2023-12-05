@@ -5,7 +5,6 @@ import { useThemeStore } from '@/store/modules/theme';
 import { useRouteStore } from '@/store/modules/route';
 import { useRouterPush } from '@/hooks/common/router';
 import { ArrowRight } from '@element-plus/icons-vue';
-import { ElDropdown } from 'element-plus';
 defineOptions({
   name: 'GlobalBreadcrumb'
 });
