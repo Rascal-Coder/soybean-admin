@@ -70,13 +70,7 @@ function handleDropdown(key: DropdownKey) {
   <ElButton v-if="!authStore.isLogin" text @click="loginOrRegister">
     {{ $t('page.login.common.loginOrRegister') }}
   </ElButton>
-  <ElDropdown v-else :hide-on-click="false" trigger="click" @command="handleDropdown">
-    <template #dropdown-trigger>
-      <div class="flex items-center">
-        <SvgIcon icon="ph:user-circle" class="text-icon-large" />
-        <span class="text-16px font-medium">{{ authStore.userInfo.userName }}</span>
-      </div>
-    </template>
+  <ElDropdown v-else trigger="click" @command="handleDropdown">
     <div>
       <ButtonIcon>
         <SvgIcon icon="ph:user-circle" class="text-icon-large" />

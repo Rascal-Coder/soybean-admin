@@ -36,18 +36,30 @@ const tooltipContent = computed(() => {
 
   return $t('icon.lang');
 });
-
 function changeLang(lang: App.I18n.LangType) {
   emits('changeLang', lang);
 }
 </script>
 
 <template>
-  <NDropdown :value="lang" :options="langOptions" trigger="hover" @select="changeLang">
+  <ElDropdown @command="changeLang">
     <div>
       <ButtonIcon :tooltip-content="tooltipContent" tooltip-placement="left" icon="heroicons:language"></ButtonIcon>
     </div>
-  </NDropdown>
+    <template #dropdown>
+      <ElDropdownMenu>
+        <ElDropdownItem
+          v-for="option in langOptions"
+          :key="option.key"
+          :tabindex="option.key"
+          :command="option.key"
+          :disabled="lang === option.key"
+        >
+          {{ option.label }}
+        </ElDropdownItem>
+      </ElDropdownMenu>
+    </template>
+  </ElDropdown>
 </template>
 
 <style scoped></style>
