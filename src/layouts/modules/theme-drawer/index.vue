@@ -15,7 +15,7 @@ const appStore = useAppStore();
 </script>
 
 <template>
-  <ElDrawer id="theme-drawer" v-model="appStore.themeDrawerVisible" append-to-body>
+  <ElDrawer id="theme-drawer" v-model="appStore.themeDrawerVisible" class="!w-320px" append-to-body>
     <template #header>
       <h4>{{ $t('theme.themeDrawerTitle') }}</h4>
     </template>

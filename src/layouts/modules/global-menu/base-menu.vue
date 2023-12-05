@@ -30,7 +30,6 @@ const routeStore = useRouteStore();
 const { routerPushByKey } = useRouterPush();
 
 const naiveMenus = computed(() => props.menus as unknown as MentionOption[]);
-
 const isHorizontal = computed(() => props.mode === 'horizontal');
 
 const siderCollapse = computed(() => themeStore.layout.mode === 'vertical' && appStore.siderCollapse);
@@ -87,6 +86,16 @@ watch(
       :style="menuHeightStyle"
       @update:value="handleClickMenu"
     />
+    <!-- <el-menu
+      :default-active="$route.path"
+      :mode="mode"
+      :collapse="siderCollapse"
+      :collapse-transition="false"
+      unique-opened
+      router
+    >
+      <side-bar-item v-for="route in permissionStore.route" :key="route.path" :item="route" />
+    </el-menu> -->
   </SimpleScrollbar>
 </template>
 

@@ -86,12 +86,6 @@ function translateOptions(options: Common.Option<string>[]) {
       />
     </SettingItem>
     <SettingItem v-if="themeStore.tab.visible" key="5-3" :label="$t('theme.tab.mode.title')">
-      <!-- <NSelect
-        v-model:value="themeStore.tab.mode"
-        :options="translateOptions(themeTabModeOptions)"
-        size="small"
-        class="w-120px"
-      /> -->
       <ElSelect v-model="themeStore.tab.mode" class="w-120px">
         <ElOption
           v-for="item in translateOptions(themeTabModeOptions)"
@@ -176,7 +170,7 @@ function translateOptions(options: Common.Option<string>[]) {
     </SettingItem>
     <SettingItem
       v-if="themeStore.footer.visible && layoutMode === 'horizontal-mix'"
-      key="7-4"
+      key="7-6"
       :label="$t('theme.footer.right')"
     >
       <ElSwitch v-model="themeStore.footer.right" />
