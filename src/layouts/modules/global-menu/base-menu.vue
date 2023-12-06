@@ -1,21 +1,33 @@
+<template>
+  <SimpleScrollbar>
+    <el-menu
+      :default-active="$route.path"
+      :mode="mode"
+      :collapse="siderCollapse"
+      :style="menuHeightStyle"
+      class="!transition-400 !border-r-0"
+      :collapse-transition="false"
+      unique-opened
+      router
+    >
+      <BaseMenuItem v-for="menu in EleMenus" :key="menu.key" :item="menu"></BaseMenuItem>
+    </el-menu>
+  </SimpleScrollbar>
+</template>
+
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
-import { useRoute } from 'vue-router';
-import type { MenuProps, MentionOption } from 'naive-ui';
+import { computed } from 'vue';
 import { SimpleScrollbar } from '@sa/materials';
-import type { RouteKey } from '@elegant-router/types';
 import { useAppStore } from '@/store/modules/app';
 import { useThemeStore } from '@/store/modules/theme';
-import { useRouteStore } from '@/store/modules/route';
-import { useRouterPush } from '@/hooks/common/router';
-
+import BaseMenuItem from './base-menu-item.vue';
 defineOptions({
   name: 'BaseMenu'
 });
 
 interface Props {
   darkTheme?: boolean;
-  mode?: MenuProps['mode'];
+  mode?: 'horizontal' | 'vertical';
   menus: App.Global.Menu[];
 }
 
@@ -23,80 +35,15 @@ const props = withDefaults(defineProps<Props>(), {
   mode: 'vertical'
 });
 
-const route = useRoute();
 const appStore = useAppStore();
 const themeStore = useThemeStore();
-const routeStore = useRouteStore();
-const { routerPushByKey } = useRouterPush();
 
-const naiveMenus = computed(() => props.menus as unknown as MentionOption[]);
+const EleMenus = computed(() => props.menus);
 const isHorizontal = computed(() => props.mode === 'horizontal');
 
 const siderCollapse = computed(() => themeStore.layout.mode === 'vertical' && appStore.siderCollapse);
 
 const menuHeightStyle = computed(() =>
-  isHorizontal.value ? { '--n-item-height': `${themeStore.header.height}px` } : {}
-);
-
-const selectedKey = computed(() => {
-  const { hideInMenu, activeMenu } = route.meta;
-  const name = route.name as string;
-
-  const routeName = (hideInMenu ? activeMenu : name) || name;
-
-  return routeName;
-});
-
-const expandedKeys = ref<string[]>([]);
-
-function updateExpandedKeys() {
-  if (isHorizontal.value || siderCollapse.value || !selectedKey.value) {
-    expandedKeys.value = [];
-    return;
-  }
-  expandedKeys.value = routeStore.getSelectedMenuKeyPath(selectedKey.value);
-}
-
-function handleClickMenu(key: RouteKey) {
-  routerPushByKey(key);
-}
-
-watch(
-  () => route.name,
-  () => {
-    updateExpandedKeys();
-  },
-  { immediate: true }
+  isHorizontal.value ? { '--el-menu-horizontal-height': `${themeStore.header.height}px` } : {}
 );
 </script>
-
-<template>
-  <SimpleScrollbar>
-    <NMenu
-      v-model:expanded-keys="expandedKeys"
-      :mode="mode"
-      :value="selectedKey"
-      :collapsed="siderCollapse"
-      :collapsed-width="themeStore.sider.collapsedWidth"
-      :collapsed-icon-size="22"
-      :options="naiveMenus"
-      :inverted="darkTheme"
-      :inline-indent="18"
-      class="transition-300"
-      :style="menuHeightStyle"
-      @update:value="handleClickMenu"
-    />
-    <!-- <el-menu
-      :default-active="$route.path"
-      :mode="mode"
-      :collapse="siderCollapse"
-      :collapse-transition="false"
-      unique-opened
-      router
-    >
-      <side-bar-item v-for="route in permissionStore.route" :key="route.path" :item="route" />
-    </el-menu> -->
-  </SimpleScrollbar>
-</template>
-
-<style scoped></style>
