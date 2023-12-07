@@ -42,9 +42,17 @@ defineExpose({ instance });
 </script>
 
 <template>
-  <div ref="bsWrap" class="h-full text-left">
-    <div ref="bsContent" class="inline-block" :class="{ 'h-full': !isScrollY }">
-      <slot></slot>
+  <div class="flex h-full flex-y-center">
+    <div class="tab-left-btn">
+      <slot name="left"></slot>
+    </div>
+    <div ref="bsWrap" class="h-full text-left flex-1-hidden">
+      <div ref="bsContent" class="inline-block" :class="{ 'h-full': !isScrollY }">
+        <slot name="conent"></slot>
+      </div>
+    </div>
+    <div class="tab-left-btn mx-4">
+      <slot name="right"></slot>
     </div>
   </div>
 </template>
