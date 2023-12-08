@@ -11,14 +11,6 @@ defineOptions({
 });
 
 interface Props {
-  /**
-   * clientX
-   */
-  x: number;
-  /**
-   * clientY
-   */
-  y: number;
   tabId: string;
   excludeKeys?: App.Global.DropdownKey[];
   disabledKeys?: App.Global.DropdownKey[];
@@ -26,7 +18,8 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   excludeKeys: () => [],
-  disabledKeys: () => []
+  disabledKeys: () => [],
+  trigger: 'contextmenu'
 });
 
 const visible = defineModel<boolean>('visible', { default: false });
@@ -41,7 +34,7 @@ type DropdownOption = {
   disabled?: boolean;
 };
 
-const options = computed(() => {
+const tabOptions = computed(() => {
   const opts: DropdownOption[] = [
     {
       key: 'closeCurrent',
@@ -70,7 +63,6 @@ const options = computed(() => {
     }
   ];
   const { excludeKeys, disabledKeys } = props;
-
   const result = opts.filter(opt => !excludeKeys.includes(opt.key));
 
   disabledKeys.forEach(key => {
@@ -113,16 +105,22 @@ function handleDropdown(optionKey: App.Global.DropdownKey) {
 </script>
 
 <template>
-  <NDropdown
-    :show="visible"
-    placement="bottom-start"
-    trigger="manual"
-    :x="x"
-    :y="y"
-    :options="options"
-    @clickoutside="hideDropdown"
-    @select="handleDropdown"
-  />
+  <ElDropdown trigger="contextmenu" @command="handleDropdown">
+    <slot></slot>
+    <template #dropdown>
+      <ElDropdownMenu>
+        <ElDropdownItem
+          v-for="option in tabOptions"
+          :key="option.key"
+          :disabled="option.disabled"
+          :command="option.key"
+        >
+          <component :is="option.icon" />
+          <span>{{ option.label }}</span>
+        </ElDropdownItem>
+      </ElDropdownMenu>
+    </template>
+  </ElDropdown>
 </template>
 
 <style scoped></style>

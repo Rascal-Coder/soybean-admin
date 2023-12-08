@@ -51,7 +51,6 @@ function changeLang(lang: App.I18n.LangType) {
         <ElDropdownItem
           v-for="option in langOptions"
           :key="option.key"
-          :tabindex="option.key"
           :command="option.key"
           :disabled="lang === option.key"
         >
