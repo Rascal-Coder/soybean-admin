@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, reactive, watch, nextTick } from 'vue';
+import type { VNodeRef } from 'vue';
+import { ref, watch, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
 import { useElementBounding, useResizeObserver, useDebounceFn } from '@vueuse/core';
 import { PageTab } from '@sa/materials';
@@ -12,6 +13,10 @@ import ContextMenu from './context-menu.vue';
 defineOptions({
   name: 'GlobalTab'
 });
+interface ContextMenuRef {
+  close(): void;
+}
+
 const route = useRoute();
 const appStore = useAppStore();
 const themeStore = useThemeStore();
@@ -22,6 +27,7 @@ const bsWrapper = ref<HTMLElement>();
 const { width: bsWrapperWidth, left: bsWrapperLeft } = useElementBounding(bsWrapper);
 const bsScroll = ref<InstanceType<typeof BetterScroll>>();
 const tabRef = ref<HTMLElement>();
+const contextMenuRefList = ref<ContextMenuRef[]>([]);
 const TAB_DATA_ID = 'data-tab-id';
 
 type TabNamedNodeMap = NamedNodeMap & {
@@ -30,11 +36,12 @@ type TabNamedNodeMap = NamedNodeMap & {
 async function scrollToActiveTab() {
   await nextTick();
   if (!tabRef.value) return;
-  const elDropdownRef = tabRef.value.children[0];
-  const { children: tabs } = elDropdownRef;
-  for (let i = 0; i < tabs.length; i += 1) {
-    const child = tabs[i];
-    const { value: tabId } = (child.attributes as TabNamedNodeMap)[TAB_DATA_ID];
+
+  const elDropdownRefList = tabRef.value.children;
+  for (let i = 0; i < elDropdownRefList.length; i += 1) {
+    const child = elDropdownRefList[i];
+    const { children: tab } = child;
+    const { value: tabId } = (tab[0].attributes as TabNamedNodeMap)[TAB_DATA_ID];
     if (tabId === tabStore.activeTabId) {
       const { left, width } = child.getBoundingClientRect();
       const clientX = left + width / 2;
@@ -46,6 +53,7 @@ async function scrollToActiveTab() {
     }
   }
 }
+
 function scrollByClientX(clientX: number) {
   if (bsScroll.value?.instance) {
     const { maxScrollX, x: leftX, scrollBy, wrapper, content } = bsScroll.value.instance!;
@@ -76,42 +84,11 @@ async function refresh() {
   appStore.reloadPage(500);
 }
 
-interface DropdownConfig {
-  visible: boolean;
-  tabId: string;
-}
-
-const dropdown: DropdownConfig = reactive({
-  visible: false,
-  tabId: ''
-});
-
-function setDropdown(config: Partial<DropdownConfig>) {
-  Object.assign(dropdown, config);
-}
-let isClickContextMenu = false;
-
-async function handleContextMenu(e: MouseEvent, tabId: string) {
-  e.preventDefault();
-
-  const DURATION = dropdown.visible ? 150 : 0;
-
-  setDropdown({ visible: false });
-
-  setTimeout(() => {
-    setDropdown({
-      visible: true,
-      tabId
-    });
-    isClickContextMenu = false;
-  }, DURATION);
-}
-
-function handleDropdownVisible(visible: boolean) {
-  if (!isClickContextMenu) {
-    setDropdown({ visible });
+const setContextMenuRefList: VNodeRef = el => {
+  if (el) {
+    contextMenuRefList.value.push(el as unknown as ContextMenuRef);
   }
-}
+};
 function init() {
   tabStore.initTabStore(route);
 }
@@ -137,6 +114,11 @@ useResizeObserver(
     scrollToActiveTab();
   }, 200)
 );
+const handleCloseTagAction = () => {
+  contextMenuRefList.value.forEach(item => {
+    item?.close();
+  });
+};
 // init
 init();
 </script>
@@ -148,19 +130,20 @@ init();
         <template #conent>
           <div
             ref="tabRef"
-            class="flex h-full pr-18px transition-400"
+            class="flex h-full pr-18px"
             :class="[themeStore.tab.mode === 'chrome' ? 'items-end' : 'items-center gap-12px']"
           >
             <ContextMenu
               v-for="tab in tabStore.tabs"
               :key="tab.id"
-              :visible="dropdown.visible"
-              :tab-id="dropdown.tabId"
-              :disabled-keys="getContextMenuDisabledKeys(dropdown.tabId)"
-              @update:visible="handleDropdownVisible"
+              :ref="setContextMenuRefList"
+              :tab-id="tab.id"
+              :disabled-keys="getContextMenuDisabledKeys(tab.id)"
+              @close-all="handleCloseTagAction"
             >
               <PageTab
                 :[TAB_DATA_ID]="tab.id"
+                :tab-id="tab.id"
                 :mode="themeStore.tab.mode"
                 :dark-mode="themeStore.darkMode"
                 :active="tab.id === tabStore.activeTabId"
@@ -168,7 +151,6 @@ init();
                 :closable="!tabStore.isTabRetain(tab.id)"
                 @click="tabStore.switchRouteByTab(tab)"
                 @close="handleCloseTab(tab)"
-                @contextmenu="handleContextMenu($event, tab.id)"
               >
                 <template #prefix>
                   <SvgIcon

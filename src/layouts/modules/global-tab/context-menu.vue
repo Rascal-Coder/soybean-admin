@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import type { VNode } from 'vue';
 import { $t } from '@/locales';
 import { useSvgIconRender } from '@sa/hooks';
@@ -21,8 +21,6 @@ const props = withDefaults(defineProps<Props>(), {
   disabledKeys: () => [],
   trigger: 'contextmenu'
 });
-
-const visible = defineModel<boolean>('visible', { default: false });
 
 const { removeTab, clearTabs, clearLeftTabs, clearRightTabs } = useTabStore();
 const { SvgIconVNode } = useSvgIconRender(SvgIcon);
@@ -76,10 +74,7 @@ const tabOptions = computed(() => {
   return result;
 });
 
-function hideDropdown() {
-  visible.value = false;
-}
-
+const dropdownRef = ref();
 const dropdownAction: Record<App.Global.DropdownKey, () => void> = {
   closeCurrent() {
     removeTab(props.tabId);
@@ -97,15 +92,26 @@ const dropdownAction: Record<App.Global.DropdownKey, () => void> = {
     clearTabs();
   }
 };
-
+const emit = defineEmits(['closeAll']);
 function handleDropdown(optionKey: App.Global.DropdownKey) {
   dropdownAction[optionKey]?.();
-  hideDropdown();
 }
+function handleVisible(bool: boolean) {
+  if (!bool) return;
+  emit('closeAll');
+  dropdownRef.value.handleOpen();
+}
+const handleClose = () => {
+  dropdownRef.value?.handleClose();
+};
+
+defineExpose({
+  close: handleClose
+});
 </script>
 
 <template>
-  <ElDropdown trigger="contextmenu" @command="handleDropdown">
+  <ElDropdown ref="dropdownRef" trigger="contextmenu" @command="handleDropdown" @visible-change="handleVisible">
     <slot></slot>
     <template #dropdown>
       <ElDropdownMenu>
