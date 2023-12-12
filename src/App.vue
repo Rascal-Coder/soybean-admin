@@ -1,40 +1,23 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { NConfigProvider, darkTheme } from 'naive-ui';
 import { useAppStore } from './store/modules/app';
-import { useThemeStore } from './store/modules/theme';
-import { naiveLocales, naiveDateLocales } from './locales/naive';
+import { elementPlusLang } from './locales/element-plus';
 
 defineOptions({
   name: 'App'
 });
 
 const appStore = useAppStore();
-const themeStore = useThemeStore();
 
-const naiveDarkTheme = computed(() => (themeStore.darkMode ? darkTheme : undefined));
-
-const naiveLocale = computed(() => {
-  return naiveLocales[appStore.locale];
-});
-
-const naiveDateLocale = computed(() => {
-  return naiveDateLocales[appStore.locale];
+const eleLocale = computed(() => {
+  return elementPlusLang[appStore.locale];
 });
 </script>
 
 <template>
-  <NConfigProvider
-    :theme="naiveDarkTheme"
-    :theme-overrides="themeStore.naiveTheme"
-    :locale="naiveLocale"
-    :date-locale="naiveDateLocale"
-    class="h-full"
-  >
-    <AppProvider>
-      <RouterView />
-    </AppProvider>
-  </NConfigProvider>
+  <el-config-provider :locale="eleLocale">
+    <RouterView />
+  </el-config-provider>
 </template>
 
 <style scoped></style>

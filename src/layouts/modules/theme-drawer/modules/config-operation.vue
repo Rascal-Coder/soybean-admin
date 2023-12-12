@@ -19,7 +19,7 @@ function initClipboard() {
   });
 
   clipboard.on('success', () => {
-    window.$message?.success($t('theme.configOperation.copySuccessMsg'));
+    // window.$message?.success($t('theme.configOperation.copySuccessMsg'));
   });
 }
 
@@ -34,7 +34,7 @@ function handleReset() {
   themeStore.resetStore();
 
   setTimeout(() => {
-    window.$message?.success($t('theme.configOperation.resetSuccessMsg'));
+    // window.$message?.success($t('theme.configOperation.resetSuccessMsg'));
   }, 50);
 }
 

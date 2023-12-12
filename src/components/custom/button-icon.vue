@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { createReusableTemplate } from '@vueuse/core';
-import type { PopoverPlacement } from 'naive-ui';
+import type { Placement } from 'element-plus';
 
 defineOptions({
   name: 'ButtonIcon',
@@ -24,7 +24,7 @@ interface Props {
   /**
    * tooltip placement
    */
-  tooltipPlacement?: PopoverPlacement;
+  tooltipPlacement?: Placement;
 }
 
 const props = withDefaults(defineProps<Props>(), {

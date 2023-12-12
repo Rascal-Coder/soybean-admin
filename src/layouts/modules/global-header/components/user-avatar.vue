@@ -46,15 +46,16 @@ const options = computed(() => {
 });
 
 function logout() {
-  window.$dialog?.info({
-    title: $t('common.tip'),
-    content: $t('common.logoutConfirm'),
-    positiveText: $t('common.confirm'),
-    negativeText: $t('common.cancel'),
-    onPositiveClick: () => {
-      authStore.resetStore();
-    }
-  });
+  authStore.resetStore();
+  // window.$dialog?.info({
+  //   title: $t('common.tip'),
+  //   content: $t('common.logoutConfirm'),
+  //   positiveText: $t('common.confirm'),
+  //   negativeText: $t('common.cancel'),
+  //   onPositiveClick: () => {
+  //     authStore.resetStore();
+  //   }
+  // });
 }
 
 function handleDropdown(key: DropdownKey) {
