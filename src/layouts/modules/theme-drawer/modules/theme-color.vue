@@ -24,6 +24,7 @@ function handleUpdateColor(color: string, key: App.Theme.ThemeColorKey) {
           {{ $t('theme.themeColor.followPrimary') }}
         </ElCheckbox>
       </template>
+
       <ColorPicker
         :color="themeStore.themeColors[key]"
         :disabled="key === 'info' && themeStore.isInfoFollowPrimary"

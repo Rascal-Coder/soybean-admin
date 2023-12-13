@@ -3,22 +3,6 @@ interface Window {
    * NProgress instance
    */
   NProgress?: import('nprogress').NProgress;
-  // /**
-  //  * loading bar instance
-  //  */
-  // $loadingBar?: import('naive-ui').LoadingBarProviderInst;
-  // /**
-  //  * dialog instance
-  //  */
-  // $dialog?: import('naive-ui').DialogProviderInst;
-  // /**
-  //  * message instance
-  //  */
-  // $message?: import('naive-ui').MessageProviderInst;
-  // /**
-  //  * notification instance
-  //  */
-  // $notification?: import('naive-ui').NotificationProviderInst;
 }
 
 interface ViewTransition {

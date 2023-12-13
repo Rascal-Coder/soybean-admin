@@ -4,8 +4,7 @@ import { defineStore } from 'pinia';
 import { usePreferredColorScheme, useEventListener } from '@vueuse/core';
 import { SetupStoreId } from '@/enum';
 import { localStg } from '@/utils/storage';
-import { createThemeToken, initThemeSettings, addThemeVarsToHtml, toggleCssDarkMode, getNaiveTheme } from './shared';
-
+import { createThemeToken, initThemeSettings, addThemeVarsToHtml, toggleCssDarkMode, setEpThemeColor } from './shared';
 /**
  * theme store
  */
@@ -41,11 +40,6 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
     };
     return colors;
   });
-
-  /**
-   * naive theme
-   */
-  const naiveTheme = computed(() => getNaiveTheme(themeColors.value));
 
   /**
    * settings json
@@ -147,6 +141,10 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
         if (themeColorsVal !== prevThemeColorsVal) {
           setupThemeVarsToHtml();
         }
+        Object.entries(themeColors.value).forEach(([key, value]) => {
+          // 设置 css 变量
+          setEpThemeColor(key, value, darkMode.value);
+        });
       },
       { immediate: true }
     );
@@ -163,7 +161,6 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
     ...toRefs(settings.value),
     darkMode,
     themeColors,
-    naiveTheme,
     settingsJson,
     resetStore,
     setThemeScheme,

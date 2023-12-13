@@ -1,11 +1,11 @@
-import type { GlobalThemeOverrides } from 'naive-ui';
-import { getColorPalette, getColorByColorPaletteNumber } from '@sa/color-palette';
-import { getRgbOfColor, addColorAlpha } from '@sa/utils';
+import { getColorPalette } from '@sa/color-palette';
+import { getRgbOfColor, darken, lighten } from '@sa/utils';
 import { themeSettings, overrideThemeSettings } from '@/theme/settings';
 import { themeVars } from '@/theme/vars';
 import { localStg } from '@/utils/storage';
-
+// import { useThemeStore } from '@/store/modules/theme';
 const DARK_CLASS = 'dark';
+// const themeStore = useThemeStore();
 
 /**
  * init theme settings
@@ -174,58 +174,40 @@ export function toggleCssDarkMode(darkMode = false) {
     removeDarkClass();
   }
 }
-
-type NaiveColorScene = '' | 'Suppl' | 'Hover' | 'Pressed' | 'Active';
-type NaiveColorKey = `${App.Theme.ThemeColorKey}Color${NaiveColorScene}`;
-type NaiveThemeColor = Partial<Record<NaiveColorKey, string>>;
-interface NaiveColorAction {
-  scene: NaiveColorScene;
-  handler: (color: string) => string;
+function setProperty(
+  mode: 'dark' | 'light',
+  type: string,
+  {
+    i,
+    color,
+    isDark
+  }: {
+    i: number;
+    color: string;
+    isDark: boolean;
+  }
+) {
+  document.documentElement.style.setProperty(
+    `--el-color-${type}-${mode}-${i}`,
+    isDark ? darken(color, i / 10) : lighten(color, i / 10)
+  );
 }
 
-/**
- * get naive theme colors
- * @param colors
- */
-function getNaiveThemeColors(colors: App.Theme.ThemeColor) {
-  const colorActions: NaiveColorAction[] = [
-    { scene: '', handler: color => color },
-    { scene: 'Suppl', handler: color => color },
-    { scene: 'Hover', handler: color => getColorByColorPaletteNumber(color, 500) },
-    { scene: 'Pressed', handler: color => getColorByColorPaletteNumber(color, 700) },
-    { scene: 'Active', handler: color => addColorAlpha(color, 0.1) }
-  ];
-
-  const themeColors: NaiveThemeColor = {};
-
-  const colorEntries = Object.entries(colors) as [App.Theme.ThemeColorKey, string][];
-
-  colorEntries.forEach(color => {
-    colorActions.forEach(action => {
-      const [colorType, colorValue] = color;
-      const colorKey: NaiveColorKey = `${colorType}Color${action.scene}`;
-      themeColors[colorKey] = action.handler(colorValue);
+/** 设置 `element-plus` 主题色 */
+export const setEpThemeColor = (type: string, color: string, isDark: boolean) => {
+  document.documentElement.style.setProperty(`--el-color-${type}`, color);
+  for (let i = 1; i <= 2; i++) {
+    setProperty('dark', type, {
+      i,
+      color,
+      isDark
     });
-  });
-
-  return themeColors;
-}
-
-/**
- * get naive theme
- * @param colors theme colors
- */
-export function getNaiveTheme(colors: App.Theme.ThemeColor) {
-  const { primary: colorLoading } = colors;
-
-  const theme: GlobalThemeOverrides = {
-    common: {
-      ...getNaiveThemeColors(colors)
-    },
-    LoadingBar: {
-      colorLoading
-    }
-  };
-
-  return theme;
-}
+  }
+  for (let i = 1; i <= 9; i++) {
+    setProperty('light', type, {
+      i,
+      color,
+      isDark
+    });
+  }
+};

@@ -13,7 +13,7 @@ const themeStore = useThemeStore();
       <span>Copyright</span>
       <span class="mx-1">©</span>
       <span>{{ themeStore.footer.dates }}</span>
-      <a class="ml-1 cursor-pointer hover:text-blue" target="_blank" rel="noopener" :href="themeStore.footer.website">
+      <a class="ml-1 cursor-pointer" target="_blank" rel="noopener" :href="themeStore.footer.website">
         {{ themeStore.footer.company }}
       </a>
     </div>

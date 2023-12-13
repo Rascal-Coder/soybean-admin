@@ -8,7 +8,7 @@ import { localStg } from '@/utils/storage';
 import { useRouteStore } from '../route';
 import { getToken, getUserInfo, clearAuthStorage } from './shared';
 import { $t } from '@/locales';
-import { ElNotification } from 'element-plus';
+// import { ElNotification } from 'element-plus';
 // const { $notification } = useGlobelProperties();
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const routeStore = useRouteStore();

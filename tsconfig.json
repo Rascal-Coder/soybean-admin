@@ -23,7 +23,7 @@
 			"vite/client",
 			"node",
 			"unplugin-icons/types/vue",
-			"naive-ui/volar"
+			"element-plus/global"
 		]
 	},
 	"include": ["./**/*.ts", "./**/*.tsx", "./**/*.vue"],

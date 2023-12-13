@@ -1,5 +1,4 @@
 import type { MessageOptions, ElMessageBoxOptions, messageType } from 'element-plus';
-import { ElMessage, ElMessageBox } from 'element-plus';
 interface MessageBoxConfig extends ElMessageBoxOptions {
   confirmBack?: () => void;
   cancelBack?: () => void;
