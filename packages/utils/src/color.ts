@@ -259,7 +259,6 @@ function getValue(hsv: HsvColor, i: number, isLight: boolean) {
 function hexToRgb(str: string): number[] {
   const hxs = str.replace('#', '').match(/../g);
   if (!hxs) throw new Error('Invalid hex color format');
-
   const rgb: number[] = hxs.map(hex => parseInt(hex, 16));
   return rgb;
 }

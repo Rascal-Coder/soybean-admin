@@ -47,9 +47,6 @@ export function presetSoybeanAdmin(): Preset<Theme> {
       {
         'nowrap-hidden': 'overflow-hidden whitespace-nowrap',
         'ellipsis-text': 'nowrap-hidden text-ellipsis'
-      },
-      {
-        'shadow-light': 'shadow-lg shadow-indigo-500/40'
       }
     ]
   };
