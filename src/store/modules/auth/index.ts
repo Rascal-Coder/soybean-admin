@@ -7,8 +7,9 @@ import { fetchLogin, fetchGetUserInfo } from '@/service/api';
 import { localStg } from '@/utils/storage';
 import { useRouteStore } from '../route';
 import { getToken, getUserInfo, clearAuthStorage } from './shared';
-// import { $t } from '@/locales';
-
+import { $t } from '@/locales';
+import { ElNotification } from 'element-plus';
+// const { $notification } = useGlobelProperties();
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const routeStore = useRouteStore();
   const { route, toLogin, redirectFromLogin } = useRouterPush(false);
@@ -58,10 +59,12 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
       await redirectFromLogin();
 
       if (routeStore.isInitAuthRoute) {
-        // window.$notification?.success({
-        //   title: $t('page.login.common.loginSuccess'),
-        //   content: $t('page.login.common.welcomeBack', { userName: userInfo.userName })
-        // });
+        ElNotification({
+          title: $t('page.login.common.loginSuccess'),
+          message: $t('page.login.common.welcomeBack', { userName: userInfo.userName }),
+          type: 'success',
+          duration: 2000
+        });
       }
     } catch {
       resetStore();

@@ -3,11 +3,12 @@ import { ref, onMounted } from 'vue';
 import Clipboard from 'clipboard';
 import { $t } from '@/locales';
 import { useThemeStore } from '@/store/modules/theme';
-
+import { useGlobelProperties } from '@/hooks';
 defineOptions({
   name: 'ConfigOperation'
 });
 
+const { $messageSuccess } = useGlobelProperties();
 const themeStore = useThemeStore();
 
 const domRef = ref<HTMLElement | null>(null);
@@ -19,22 +20,20 @@ function initClipboard() {
   });
 
   clipboard.on('success', () => {
-    // window.$message?.success($t('theme.configOperation.copySuccessMsg'));
+    $messageSuccess($t('theme.configOperation.copySuccessMsg'));
   });
 }
 
 function getClipboardText() {
   const reg = /"\w+":/g;
-
   const json = themeStore.settingsJson;
   return json.replace(reg, match => match.replace(/"/g, ''));
 }
 
 function handleReset() {
   themeStore.resetStore();
-
   setTimeout(() => {
-    // window.$message?.success($t('theme.configOperation.resetSuccessMsg'));
+    $messageSuccess($t('theme.configOperation.resetSuccessMsg'));
   }, 50);
 }
 

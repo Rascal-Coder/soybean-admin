@@ -7,11 +7,11 @@ import { useRouterPush } from '@/hooks/common/router';
 import { $t } from '@/locales';
 import SvgIcon from '@/components/custom/svg-icon.vue';
 import { ElDropdownMenu } from 'element-plus';
-
+import { useGlobelProperties } from '@/hooks';
 defineOptions({
   name: 'UserAvatar'
 });
-
+const { $messageBox } = useGlobelProperties();
 const authStore = useAuthStore();
 const { routerPushByKey, toLogin } = useRouterPush();
 const { SvgIconVNode } = useSvgIconRender(SvgIcon);
@@ -46,16 +46,14 @@ const options = computed(() => {
 });
 
 function logout() {
-  authStore.resetStore();
-  // window.$dialog?.info({
-  //   title: $t('common.tip'),
-  //   content: $t('common.logoutConfirm'),
-  //   positiveText: $t('common.confirm'),
-  //   negativeText: $t('common.cancel'),
-  //   onPositiveClick: () => {
-  //     authStore.resetStore();
-  //   }
-  // });
+  $messageBox($t('common.logoutConfirm'), {
+    title: $t('common.tip'),
+    cancelButtonText: $t('common.cancel'),
+    confirmButtonText: $t('common.confirm'),
+    confirmBack: () => {
+      authStore.resetStore();
+    }
+  });
 }
 
 function handleDropdown(key: DropdownKey) {
