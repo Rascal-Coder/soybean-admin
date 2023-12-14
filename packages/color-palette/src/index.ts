@@ -2,7 +2,7 @@ import { getColorPaletteFamily } from './palette';
 import { getColorName } from './name';
 import type { ColorPalette, ColorPaletteNumber, ColorPaletteItem, ColorPaletteFamily } from './type';
 import defaultPalettes from './json/palette.json';
-
+export * from './color';
 /**
  * get color palette by provided color and color name
  * @param color the provided color

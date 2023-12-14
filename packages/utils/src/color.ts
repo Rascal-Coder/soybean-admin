@@ -2,7 +2,7 @@ import { colord, extend } from 'colord';
 import namesPlugin from 'colord/plugins/names';
 import mixPlugin from 'colord/plugins/mix';
 import type { AnyColor, HsvColor, RgbColor } from 'colord';
-
+import { getRgb, getHex } from '@sa/color-palette';
 extend([namesPlugin, mixPlugin]);
 
 /**
@@ -255,35 +255,25 @@ function getValue(hsv: HsvColor, i: number, isLight: boolean) {
 
   return value;
 }
-/** 将十六进制颜色转换为 RGB 数组 */
-function hexToRgb(str: string): number[] {
-  const hxs = str.replace('#', '').match(/../g);
-  if (!hxs) throw new Error('Invalid hex color format');
-  const rgb: number[] = hxs.map(hex => parseInt(hex, 16));
-  return rgb;
-}
-
-/** 将 RGB 值转换为十六进制颜色 */
-function rgbToHex(a: number, b: number, c: number): string {
-  const toHex = (value: number): string => {
-    const hex = value.toString(16);
-    return hex.length === 1 ? `0${hex}` : hex;
-  };
-
-  const hexs = [toHex(a), toHex(b), toHex(c)];
-  return `#${hexs.join('')}`;
-}
 
 /** 变暗颜色值 */
 export function darken(color: string, level: number): string {
-  const rgbc = hexToRgb(color);
-  const darkenRgb = rgbc.map(value => Math.floor(value * (1 - level)));
-  return rgbToHex(darkenRgb[0], darkenRgb[1], darkenRgb[2]);
+  const { r, g, b } = getRgb(color);
+  function rgbToString(_r: number, _g: number, _b: number) {
+    return `rgb(${Math.floor(_r * (1 - level))},${Math.floor(_g * (1 - level))},${Math.floor(_b * (1 - level))})`;
+  }
+  const rgbStr = rgbToString(r, g, b);
+  return getHex(rgbStr);
 }
 
 /** 变亮颜色值 */
 export function lighten(color: string, level: number): string {
-  const rgbc = hexToRgb(color);
-  const lightenRgb = rgbc.map(value => Math.floor((255 - value) * level + value));
-  return rgbToHex(lightenRgb[0], lightenRgb[1], lightenRgb[2]);
+  const { r, g, b } = getRgb(color);
+  function rgbToString(_r: number, _g: number, _b: number) {
+    return `rgb(${Math.floor((255 - _r) * level + _r)},${Math.floor((255 - _g) * level + _g)},${Math.floor(
+      (255 - _b) * level + _b
+    )})`;
+  }
+  const rgbStr = rgbToString(r, g, b);
+  return getHex(rgbStr);
 }
