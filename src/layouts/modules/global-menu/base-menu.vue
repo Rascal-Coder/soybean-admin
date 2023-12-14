@@ -55,8 +55,8 @@ const invertedStyle = computed(() => {
     '--el-menu-bg-color': 'transparent',
     '--el-menu-hover-bg-color': darken(primary, 9 / 10),
     '--el-menu-item-hover-fill': darken(primary, 9 / 10),
-    '--el-menu-hover-text-color': darken(primary, 0),
-    '--el-menu-active-color': darken(primary, 0)
+    '--el-menu-hover-text-color': darken(primary),
+    '--el-menu-active-color': darken(primary)
   };
 });
 </script>

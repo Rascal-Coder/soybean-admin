@@ -255,24 +255,29 @@ function getValue(hsv: HsvColor, i: number, isLight: boolean) {
 
   return value;
 }
+export function darken(color: string): string;
+export function darken(color: string, level: number): string;
 
-/** 变暗颜色值 */
-export function darken(color: string, level: number): string {
+export function darken(color: string, level?: number): string {
   const { r, g, b } = getRgb(color);
   function rgbToString(_r: number, _g: number, _b: number) {
-    return `rgb(${Math.floor(_r * (1 - level))},${Math.floor(_g * (1 - level))},${Math.floor(_b * (1 - level))})`;
+    return `rgb(${Math.floor(_r * (1 - (level || 0)))},${Math.floor(_g * (1 - (level || 0)))},${Math.floor(
+      _b * (1 - (level || 0))
+    )})`;
   }
   const rgbStr = rgbToString(r, g, b);
   return getHex(rgbStr);
 }
 
 /** 变亮颜色值 */
-export function lighten(color: string, level: number): string {
+export function lighten(color: string): string;
+export function lighten(color: string, level: number): string;
+export function lighten(color: string, level?: number): string {
   const { r, g, b } = getRgb(color);
   function rgbToString(_r: number, _g: number, _b: number) {
-    return `rgb(${Math.floor((255 - _r) * level + _r)},${Math.floor((255 - _g) * level + _g)},${Math.floor(
-      (255 - _b) * level + _b
-    )})`;
+    return `rgb(${Math.floor((255 - _r) * (level || 0) + _r)},${Math.floor(
+      (255 - _g) * (level || 0) + _g
+    )},${Math.floor((255 - _b) * (level || 0) + _b)})`;
   }
   const rgbStr = rgbToString(r, g, b);
   return getHex(rgbStr);
