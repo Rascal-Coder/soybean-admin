@@ -30,7 +30,8 @@ export const themeVars: App.Theme.ThemeToken = {
     container: 'rgb(var(--container-bg-color))',
     layout: 'rgb(var(--layout-bg-color))',
     inverted: 'rgb(var(--inverted-bg-color))',
-    base_text: 'rgb(var(--base-text-color))'
+    base_text: 'rgb(var(--base-text-color))',
+    scrollbar: 'rgb(var(--scrollbar-color))'
   },
   boxShadow: {
     header: 'var(--header-box-shadow)',

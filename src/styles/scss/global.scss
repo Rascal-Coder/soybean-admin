@@ -12,6 +12,9 @@ body {
 
 a {
 	color: var(--el-color-primary);
+	&:hover {
+		color: var(--el-color-primary-light-1);
+	}
 }
 
 code {
@@ -21,3 +24,4 @@ code {
 	color: var(--el-color-primary);
 }
 @import "./scrollbar.scss";
+@import "./el-override.scss";

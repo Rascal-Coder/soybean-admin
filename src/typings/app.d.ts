@@ -206,6 +206,7 @@ declare namespace App {
       layout: string;
       inverted: string;
       base_text: string;
+      scrollbar: string;
       [key: string]: string;
     }
   }

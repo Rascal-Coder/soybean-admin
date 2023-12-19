@@ -1,0 +1,10 @@
+#theme-drawer {
+	.el-drawer__header {
+		padding: var(--el-drawer-padding-primary) !important;
+		border-bottom: 1px var(--el-border-color) var(--el-border-style) !important;
+		margin: 0px !important;
+	}
+	.el-drawer__body {
+		@include scrollbar();
+	}
+}
