@@ -171,6 +171,8 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
 
     const filteredAuthRoutes = filterAuthRoutesByRoles(authRoutes, authStore.userInfo.roles);
 
+    sortRoutes(filteredAuthRoutes);
+
     handleAuthRoutes(filteredAuthRoutes);
 
     setIsInitAuthRoute(true);
@@ -207,6 +209,18 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     getCacheRoutes(vueRoutes);
   }
 
+  /**
+   * sort routes
+   * @param routes auth routes
+   */
+  function sortRoutes(routes: ElegantConstRoute[]) {
+    routes.sort((a, b) => a.meta!.order! - b.meta!.order!);
+    routes.forEach(item => {
+      if (item.children) {
+        sortRoutes(item.children);
+      }
+    });
+  }
   /**
    * add routes to vue router
    * @param routes vue routes

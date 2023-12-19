@@ -185,6 +185,16 @@ export const generatedRoutes: GeneratedRoute[] = [
     ]
   },
   {
+    name: 'test-route',
+    path: '/test-route',
+    component: 'layout.base$view.test-route',
+    meta: {
+      order: 2,
+      title: 'test-route',
+      i18nKey: 'route.test-route'
+    }
+  },
+  {
     name: 'user-center',
     path: '/user-center',
     component: 'layout.base$view.user-center',
