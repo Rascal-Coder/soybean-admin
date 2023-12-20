@@ -15,9 +15,9 @@ const eleLocale = computed(() => {
 </script>
 
 <template>
-  <el-config-provider :locale="eleLocale">
+  <ElConfigProvider :locale="eleLocale">
     <RouterView />
-  </el-config-provider>
+  </ElConfigProvider>
 </template>
 
 <style scoped></style>

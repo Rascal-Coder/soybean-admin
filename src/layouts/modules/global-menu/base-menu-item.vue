@@ -1,19 +1,19 @@
 <template>
   <template v-if="!item?.children">
-    <el-menu-item :index="item.routePath">
+    <ElMenuItem :index="item.routePath">
       <component :is="item.icon"></component>
       <template #title>
         <span class="truncate">{{ item.i18nKey ? $t(item.i18nKey) : item.label }}</span>
       </template>
-    </el-menu-item>
+    </ElMenuItem>
   </template>
-  <el-sub-menu v-else :index="item.routePath">
+  <ElSubMenu v-else :index="item.routePath">
     <template #title>
       <component :is="item.icon"></component>
       <span class="truncate">{{ item.i18nKey ? $t(item.i18nKey) : item.label }}</span>
     </template>
     <BaseMenuItem v-for="child in item.children" :key="child.key" :item="child" />
-  </el-sub-menu>
+  </ElSubMenu>
 </template>
 
 <script lang="ts" setup>

@@ -1,6 +1,6 @@
 <template>
   <SimpleScrollbar>
-    <el-menu
+    <ElMenu
       :default-active="$route.path"
       :mode="mode"
       :collapse="siderCollapse"
@@ -11,7 +11,7 @@
       router
     >
       <BaseMenuItem v-for="menu in EleMenus" :key="menu.key" :item="menu"></BaseMenuItem>
-    </el-menu>
+    </ElMenu>
   </SimpleScrollbar>
 </template>
 
