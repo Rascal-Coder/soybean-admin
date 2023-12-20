@@ -1,13 +1,14 @@
 <template>
   <SimpleScrollbar>
     <ElMenu
+      id="theme-menu"
       :default-active="$route.path"
       :mode="mode"
       :collapse="siderCollapse"
-      :style="(menuHeightStyle, darkTheme ? invertedStyle : null)"
+      :style="[menuHeightStyle, darkTheme ? invertedStyle : null]"
       class="!transition-400 !border-r-0"
       :collapse-transition="false"
-      unique-opened
+      :unique-opened="uniqueOpened"
       router
     >
       <BaseMenuItem v-for="menu in EleMenus" :key="menu.key" :item="menu"></BaseMenuItem>
@@ -30,10 +31,12 @@ interface Props {
   darkTheme?: boolean;
   mode?: 'horizontal' | 'vertical';
   menus: App.Global.Menu[];
+  uniqueOpened?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  mode: 'vertical'
+  mode: 'vertical',
+  uniqueOpened: false
 });
 
 const appStore = useAppStore();
@@ -44,9 +47,10 @@ const isHorizontal = computed(() => props.mode === 'horizontal');
 
 const siderCollapse = computed(() => themeStore.layout.mode === 'vertical' && appStore.siderCollapse);
 
-const menuHeightStyle = computed(() =>
-  isHorizontal.value ? { '--el-menu-horizontal-height': `${themeStore.header.height}px` } : {}
-);
+const menuHeightStyle = computed(() => {
+  return isHorizontal.value ? { '--el-menu-horizontal-height': `${themeStore.header.height}px` } : {};
+});
+
 const { primary } = themeStore.themeColors;
 // 设置菜单反转色
 const invertedStyle = computed(() => {

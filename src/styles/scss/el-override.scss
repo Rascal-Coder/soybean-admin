@@ -1,3 +1,8 @@
+:root {
+	--el-menu-item-height: 45px;
+	--el-menu-base-level-padding: 10px;
+}
+
 #theme-drawer {
 	.el-drawer__header {
 		padding: var(--el-drawer-padding-primary) !important;
@@ -6,5 +11,28 @@
 	}
 	.el-drawer__body {
 		@include scrollbar();
+	}
+}
+
+#theme-menu.el-menu.el-menu--vertical {
+	border: none;
+	margin-inline: 8px;
+	.el-menu-item,
+	.el-sub-menu {
+		margin-block: 4px;
+		border-radius: var(--el-border-radius-base);
+	}
+	.el-menu-item.is-active {
+		background: var(--el-menu-item-hover-fill);
+		&:after {
+			position: absolute;
+			background-color: var(--el-menu-active-color);
+			block-size: 2.625rem;
+			border-end-start-radius: 0.375rem;
+			border-start-start-radius: 0.375rem;
+			content: "";
+			inline-size: 0.25rem;
+			inset-inline-end: -0.5rem;
+		}
 	}
 }
