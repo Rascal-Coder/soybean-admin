@@ -1,16 +1,20 @@
 <template>
   <template v-if="!item?.children">
-    <ElMenuItem :index="item.routePath">
-      <component :is="item.icon"></component>
+    <ElMenuItem :index="item.routePath" :title="item.i18nKey ? $t(item.i18nKey) : item.label">
+      <component :is="item.icon" class="mr-2"></component>
       <template #title>
-        <span class="truncate">{{ item.i18nKey ? $t(item.i18nKey) : item.label }}</span>
+        <span class="truncate">
+          {{ item.i18nKey ? $t(item.i18nKey) : item.label }}
+        </span>
       </template>
     </ElMenuItem>
   </template>
-  <ElSubMenu v-else :index="item.routePath">
+  <ElSubMenu v-else :index="item.routePath" :title="item.i18nKey ? $t(item.i18nKey) : item.label">
     <template #title>
-      <component :is="item.icon"></component>
-      <span class="truncate">{{ item.i18nKey ? $t(item.i18nKey) : item.label }}</span>
+      <component :is="item.icon" class="mr-2"></component>
+      <span class="truncate">
+        {{ item.i18nKey ? $t(item.i18nKey) : item.label }}
+      </span>
     </template>
     <BaseMenuItem v-for="child in item.children" :key="child.key" :item="child" />
   </ElSubMenu>
