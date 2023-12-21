@@ -1,16 +1,16 @@
 import CryptoJS from 'crypto-js';
 
-export class Crypto<T extends object> {
+export class Crypto {
   /**
    * secret
    */
   secret: string;
 
-  constructor(secret: string) {
+  constructor(secret: string = '__CryptoJS_Secret__') {
     this.secret = secret;
   }
 
-  encrypt(data: T): string {
+  encrypt(data: any): string {
     const dataString = JSON.stringify(data);
     const encrypted = CryptoJS.AES.encrypt(dataString, this.secret);
     return encrypted.toString();
@@ -20,7 +20,7 @@ export class Crypto<T extends object> {
     const decrypted = CryptoJS.AES.decrypt(encrypted, this.secret);
     const dataString = decrypted.toString(CryptoJS.enc.Utf8);
     try {
-      return JSON.parse(dataString) as T;
+      return JSON.parse(dataString);
     } catch {
       // avoid parse error
       return null;

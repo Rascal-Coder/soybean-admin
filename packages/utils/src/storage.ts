@@ -1,5 +1,6 @@
 import localforage from 'localforage';
-
+import { Crypto } from './crypto';
+const crypto = new Crypto();
 /**
  * the storage type
  */
@@ -15,7 +16,8 @@ export function createStorage<T extends object>(type: StorageType) {
      * @param value session value
      */
     set<K extends keyof T>(key: K, value: T[K]) {
-      const json = JSON.stringify(value);
+      const json = crypto.encrypt(value);
+      // const json = JSON.stringify(value);
 
       stg.setItem(key as string, json);
     },
@@ -29,7 +31,8 @@ export function createStorage<T extends object>(type: StorageType) {
         let storageData: T[K] | null = null;
 
         try {
-          storageData = JSON.parse(json);
+          storageData = crypto.decrypt(json);
+          // storageData = JSON.parse(json);
         } catch {}
 
         if (storageData) {
