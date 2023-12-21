@@ -16,7 +16,8 @@
 			"files": ["*.ts"],
 			"rules": {
 				"no-plusplus": "off",
-				"max-params": ["error", 4]
+				"max-params": ["error", 4],
+				"no-unused-expressions": "off"
 			}
 		}
 	]
