@@ -1,10 +1,12 @@
+import type { App } from 'vue';
 import { createApp } from 'vue';
 import './plugins/assets';
 import { setupNProgress, setupIconifyOffline, setupDayjs, setupGlobalUtils } from './plugins';
 import { setupStore } from './store';
 import { setupRouter } from './router';
 import { setupI18n } from './locales';
-import App from './App.vue';
+import { setupLoadingDirective } from './directive';
+import Root from './App.vue';
 
 async function setupApp() {
   setupNProgress();
@@ -13,7 +15,7 @@ async function setupApp() {
 
   setupDayjs();
 
-  const app = createApp(App);
+  const app = createApp(Root);
 
   setupGlobalUtils(app);
 
@@ -22,8 +24,13 @@ async function setupApp() {
   await setupRouter(app);
 
   setupI18n(app);
+  // 注册指令
+  setupDirective(app);
 
   app.mount('#app');
 }
-
+function setupDirective(app: App) {
+  // 注册loading自定义指令
+  setupLoadingDirective(app);
+}
 setupApp();
