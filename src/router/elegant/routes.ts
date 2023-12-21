@@ -37,6 +37,49 @@ export const generatedRoutes: GeneratedRoute[] = [
     }
   },
   {
+    name: 'exception',
+    path: '/exception',
+    component: 'layout.base',
+    meta: {
+      title: 'exception',
+      i18nKey: 'route.exception',
+      order: 7,
+      icon: 'ant-design:exception-outlined'
+    },
+    children: [
+      {
+        name: 'exception_403',
+        path: '/exception/403',
+        component: 'view.exception_403',
+        meta: {
+          title: 'exception_403',
+          i18nKey: 'route.exception_403',
+          icon: 'ic:baseline-block'
+        }
+      },
+      {
+        name: 'exception_404',
+        path: '/exception/404',
+        component: 'view.exception_404',
+        meta: {
+          title: 'exception_404',
+          i18nKey: 'route.exception_404',
+          icon: 'ic:baseline-web-asset-off'
+        }
+      },
+      {
+        name: 'exception_500',
+        path: '/exception/500',
+        component: 'view.exception_500',
+        meta: {
+          title: 'exception_500',
+          i18nKey: 'route.exception_500',
+          icon: 'ic:baseline-wifi-off'
+        }
+      }
+    ]
+  },
+  {
     name: 'home',
     path: '/home',
     component: 'layout.base$view.home',
@@ -183,16 +226,6 @@ export const generatedRoutes: GeneratedRoute[] = [
         ]
       }
     ]
-  },
-  {
-    name: 'test-route',
-    path: '/test-route',
-    component: 'layout.base$view.test-route',
-    meta: {
-      order: 2,
-      title: 'test-route',
-      i18nKey: 'route.test-route'
-    }
   },
   {
     name: 'user-center',

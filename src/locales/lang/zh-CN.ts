@@ -124,7 +124,10 @@ const local: App.I18n.Schema = {
     'multi-menu_second': '菜单二',
     'multi-menu_second_child': '菜单二子菜单',
     'multi-menu_second_child_home': '菜单二子菜单首页',
-    'test-route': '测试路由'
+    exception: '异常页',
+    exception_403: '403',
+    exception_404: '404',
+    exception_500: '500'
   },
   page: {
     login: {

@@ -146,6 +146,10 @@ const routeMap: RouteMap = {
   "403": "/403",
   "404": "/404",
   "500": "/500",
+  "exception": "/exception",
+  "exception_403": "/exception/403",
+  "exception_404": "/exception/404",
+  "exception_500": "/exception/500",
   "home": "/home",
   "login": "/login/:module(pwd-login|code-login|register|reset-pwd|bind-wechat)?",
   "manage": "/manage",
@@ -159,7 +163,6 @@ const routeMap: RouteMap = {
   "multi-menu_second": "/multi-menu/second",
   "multi-menu_second_child": "/multi-menu/second/child",
   "multi-menu_second_child_home": "/multi-menu/second/child/home",
-  "test-route": "/test-route",
   "user-center": "/user-center"
 };
 

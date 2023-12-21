@@ -20,6 +20,10 @@ declare module "@elegant-router/types" {
     "403": "/403";
     "404": "/404";
     "500": "/500";
+    "exception": "/exception";
+    "exception_403": "/exception/403";
+    "exception_404": "/exception/404";
+    "exception_500": "/exception/500";
     "home": "/home";
     "login": "/login/:module(pwd-login|code-login|register|reset-pwd|bind-wechat)?";
     "manage": "/manage";
@@ -33,7 +37,6 @@ declare module "@elegant-router/types" {
     "multi-menu_second": "/multi-menu/second";
     "multi-menu_second_child": "/multi-menu/second/child";
     "multi-menu_second_child_home": "/multi-menu/second/child/home";
-    "test-route": "/test-route";
     "user-center": "/user-center";
   };
 
@@ -69,11 +72,11 @@ declare module "@elegant-router/types" {
     | "403"
     | "404"
     | "500"
+    | "exception"
     | "home"
     | "login"
     | "manage"
     | "multi-menu"
-    | "test-route"
     | "user-center"
   >;
 
@@ -95,6 +98,9 @@ declare module "@elegant-router/types" {
     | "404"
     | "500"
     | "login"
+    | "exception_403"
+    | "exception_404"
+    | "exception_500"
     | "home"
     | "manage_role"
     | "manage_route"
@@ -102,7 +108,6 @@ declare module "@elegant-router/types" {
     | "manage_user"
     | "multi-menu_first_child"
     | "multi-menu_second_child_home"
-    | "test-route"
     | "user-center"
   >;
 

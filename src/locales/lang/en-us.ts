@@ -124,7 +124,10 @@ const local: App.I18n.Schema = {
     'multi-menu_second': 'Menu Two',
     'multi-menu_second_child': 'Menu Two Child',
     'multi-menu_second_child_home': 'Menu Two Child Home',
-    'test-route': 'Test Route'
+    exception: 'Exception',
+    exception_403: '403',
+    exception_404: '404',
+    exception_500: '500'
   },
   page: {
     login: {
