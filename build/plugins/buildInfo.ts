@@ -46,7 +46,7 @@ const formatBytes = (a: number, b?: number): string => {
   return `${parseFloat((a / c ** f).toFixed(d))} ${e[f]}`;
 };
 
-export const viteBuildInfo = (): Plugin => {
+export const setupBuildInfo = (): Plugin => {
   let config: { command: string };
   let startTime: Dayjs;
   let endTime: Dayjs;

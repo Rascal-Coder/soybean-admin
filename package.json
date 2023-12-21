@@ -37,6 +37,7 @@
 		"nprogress": "0.2.0",
 		"picocolors": "^1.0.0",
 		"pinia": "2.1.7",
+		"vite-plugin-html": "^3.2.0",
 		"vue": "3.3.8",
 		"vue-i18n": "9.6.5",
 		"vue-router": "4.2.5"
