@@ -20,4 +20,4 @@ interface ImportMeta {
 /**
  * build time of the project
  */
-declare const BUILD_TIME: string;
+declare const __BUILD_TIME__: string;

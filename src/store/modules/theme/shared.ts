@@ -13,7 +13,6 @@ const DARK_CLASS = 'dark';
  */
 export function initThemeSettings() {
   const isProd = import.meta.env.PROD;
-
   // if it is development mode, the theme settings will not be cached, by update `themeSettings` in `src/theme/settings.ts` to update theme settings
   if (!isProd) return themeSettings;
 
@@ -22,11 +21,11 @@ export function initThemeSettings() {
 
   const settings = localStg.get('themeSettings') || themeSettings;
 
-  const isOverride = localStg.get('overrideThemeFlag') === BUILD_TIME;
+  const isOverride = localStg.get('overrideThemeFlag') === __BUILD_TIME__;
 
   if (!isOverride) {
     Object.assign(settings, overrideThemeSettings);
-    localStg.set('overrideThemeFlag', BUILD_TIME);
+    localStg.set('overrideThemeFlag', __BUILD_TIME__);
   }
 
   return settings;

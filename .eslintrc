@@ -9,7 +9,8 @@
 			"rules": {
 				"no-undef": "off", // use tsc to check the ts code of the vue
 				"vue/no-setup-props-destructure": "off", // wait to fix this rule
-				"no-unused-expressions": "off"
+				"no-unused-expressions": "off",
+				"no-underscore-dangle": "off"
 			}
 		},
 		{
@@ -17,7 +18,8 @@
 			"rules": {
 				"no-plusplus": "off",
 				"max-params": ["error", 4],
-				"no-unused-expressions": "off"
+				"no-unused-expressions": "off",
+				"no-underscore-dangle": "off"
 			}
 		}
 	]

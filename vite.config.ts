@@ -6,8 +6,7 @@ import dayjs from 'dayjs';
 import pkg from './package.json';
 const { dependencies, devDependencies, name, version } = pkg;
 const APP_INFO = {
-  pkg: { dependencies, devDependencies, name, version },
-  lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
+  pkg: { dependencies, devDependencies, name, version }
 };
 export default defineConfig(configEnv => {
   const viteEnv = loadEnv(configEnv.mode, process.cwd()) as unknown as Env.ImportMeta;
@@ -33,7 +32,9 @@ export default defineConfig(configEnv => {
       // 解决打包报错
       __INTLIFY_PROD_DEVTOOLS__: JSON.stringify(false),
       // 系统信息
-      __APP_INFO__: JSON.stringify(APP_INFO)
+      __APP_INFO__: JSON.stringify(APP_INFO),
+      // 打包时间
+      __BUILD_TIME__: JSON.stringify(dayjs().format('YYYY-MM-DD HH:mm:ss'))
     },
     server: {
       host: '0.0.0.0',
@@ -49,6 +50,15 @@ export default defineConfig(configEnv => {
       sourcemap: viteEnv.VITE_SOURCE_MAP === 'Y',
       commonjsOptions: {
         ignoreTryCatch: false
+      },
+      chunkSizeWarningLimit: 5000,
+      rollupOptions: {
+        // 静态资源分类打包
+        output: {
+          chunkFileNames: 'static/js/[name]-[hash].js',
+          entryFileNames: 'static/js/[name]-[hash].js',
+          assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
+        }
       }
     }
   };
