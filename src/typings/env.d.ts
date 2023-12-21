@@ -72,5 +72,13 @@ declare namespace Env {
      * @link https://docs.iconify.design/api/providers.html
      */
     readonly VITE_ICONIFY_URL?: string;
+    /**
+     *  build with compress
+     */
+    readonly VITE_BUILD_COMPRESS?: string;
+    /**
+     *  build with report
+     */
+    readonly VITE_BUILD_REPORT?: string;
   }
 }
