@@ -37,6 +37,54 @@ export const generatedRoutes: GeneratedRoute[] = [
     }
   },
   {
+    name: 'document',
+    path: '/document',
+    component: 'layout.base',
+    meta: {
+      title: 'document',
+      i18nKey: 'route.document'
+    },
+    children: [
+      {
+        name: 'document_element-plus',
+        path: '/document/element-plus',
+        component: 'view.document_element-plus',
+        meta: {
+          title: 'document_element-plus',
+          i18nKey: 'route.document_element-plus'
+        }
+      },
+      {
+        name: 'document_project-link',
+        path: '/document/project-link',
+        component: 'view.document_project-link',
+        meta: {
+          title: 'document_project-link',
+          i18nKey: 'route.document_project-link',
+          href: 'https://admin-docs.soybeanjs.cn/'
+        }
+      },
+      {
+        name: 'document_vite',
+        path: '/document/vite',
+        component: 'view.document_vite',
+        meta: {
+          title: 'document_vite',
+          i18nKey: 'route.document_vite'
+        }
+      },
+      {
+        name: 'document_vue',
+        path: '/document/vue',
+        component: 'view.document_vue',
+        meta: {
+          title: 'document_vue',
+          i18nKey: 'route.document_vue'
+        }
+      }
+    ]
+  },
+  {
     name: 'exception',
     path: '/exception',
     component: 'layout.base',

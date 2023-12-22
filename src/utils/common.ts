@@ -20,3 +20,24 @@ export function transformRecordToOption<T extends Record<string, string>>(record
     label
   })) as Common.Option<keyof T>[];
 }
+/**
+ * 加载网络css文件
+ * @param url css资源url
+ */
+export function loadCss(url: string): void {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = url;
+  link.crossOrigin = 'anonymous';
+  document.getElementsByTagName('head')[0].appendChild(link);
+}
+
+/**
+ * 加载网络js文件
+ * @param url js资源url
+ */
+export function loadJs(url: string): void {
+  const link = document.createElement('script');
+  link.src = url;
+  document.body.appendChild(link);
+}

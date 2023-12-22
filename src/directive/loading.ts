@@ -19,6 +19,7 @@ const loadingDirective: Directive = {
       spin
     });
     el.instance = instance;
+
     if (bind.value) {
       instance.open(full ? document.body : el);
     }
@@ -38,7 +39,7 @@ const loadingDirective: Directive = {
 };
 
 export const setupLoadingDirective = (app: App) => {
-  app.directive('custom-loading', loadingDirective);
+  app.directive('sa-loading', loadingDirective);
 };
 
 export default loadingDirective;

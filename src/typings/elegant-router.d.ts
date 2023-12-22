@@ -20,6 +20,11 @@ declare module "@elegant-router/types" {
     "403": "/403";
     "404": "/404";
     "500": "/500";
+    "document": "/document";
+    "document_element-plus": "/document/element-plus";
+    "document_project-link": "/document/project-link";
+    "document_vite": "/document/vite";
+    "document_vue": "/document/vue";
     "exception": "/exception";
     "exception_403": "/exception/403";
     "exception_404": "/exception/404";
@@ -72,6 +77,7 @@ declare module "@elegant-router/types" {
     | "403"
     | "404"
     | "500"
+    | "document"
     | "exception"
     | "home"
     | "login"
@@ -98,6 +104,10 @@ declare module "@elegant-router/types" {
     | "404"
     | "500"
     | "login"
+    | "document_element-plus"
+    | "document_project-link"
+    | "document_vite"
+    | "document_vue"
     | "exception_403"
     | "exception_404"
     | "exception_500"

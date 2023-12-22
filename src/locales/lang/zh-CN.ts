@@ -127,7 +127,12 @@ const local: App.I18n.Schema = {
     exception: '异常页',
     exception_403: '403',
     exception_404: '404',
-    exception_500: '500'
+    exception_500: '500',
+    document: '文档',
+    'document_element-plus': 'ElementPlus 文档',
+    document_vite: 'Vite 文档',
+    document_vue: 'Vue 文档',
+    'document_project-link': '项目文档(外链)'
   },
   page: {
     login: {

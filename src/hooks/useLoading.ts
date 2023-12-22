@@ -1,5 +1,5 @@
 import type { LoadingEnum } from '@/enum';
-import baseLoading from '@/components/base-loading/index.vue';
+import BaseLoading from '@/components/base-loading/index.vue';
 import type { ComponentPublicInstance } from 'vue';
 import { createApp } from 'vue';
 interface CustomLoadingInstance extends ComponentPublicInstance {
@@ -15,7 +15,7 @@ type LoadingType = {
 };
 
 export function useLoading(config: LoadingType = {}) {
-  const loadingConstructor = createApp(baseLoading, { ...config });
+  const loadingConstructor = createApp(BaseLoading, { ...config });
   let instance: CustomLoadingInstance | null = null;
   let startTime: number = 0;
   let endTime: number = 0;

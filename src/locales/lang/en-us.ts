@@ -127,7 +127,12 @@ const local: App.I18n.Schema = {
     exception: 'Exception',
     exception_403: '403',
     exception_404: '404',
-    exception_500: '500'
+    exception_500: '500',
+    document: 'Document',
+    'document_element-plus': 'ElementPlus Document',
+    document_vite: 'Vite Document',
+    document_vue: 'Vue Document',
+    'document_project-link': 'Project Document(Link)'
   },
   page: {
     login: {

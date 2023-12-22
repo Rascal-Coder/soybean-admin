@@ -3,7 +3,7 @@ import type { RouteKey, RoutePath } from '@elegant-router/types';
 import { useAuthStore } from '@/store/modules/auth';
 import { useRouteStore } from '@/store/modules/route';
 import { localStg } from '@/utils/storage';
-
+const isLinkStayCurrrent = import.meta.env.VITE_OUT_LINK_STAY_CURRENT === 'Y';
 export function createPermissionGuard(router: Router) {
   router.beforeEach(async (to, from, next) => {
     const pass = await createAuthRouteGuard(to, from, next);
@@ -13,7 +13,8 @@ export function createPermissionGuard(router: Router) {
     // 1. route with href
     if (to.meta.href) {
       window.open(to.meta.href, '_blank');
-      next({ path: from.fullPath, replace: true, query: from.query, hash: to.hash });
+
+      isLinkStayCurrrent && next({ path: from.fullPath, replace: true, query: from.query, hash: to.hash });
     }
 
     const authStore = useAuthStore();

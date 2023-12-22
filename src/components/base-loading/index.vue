@@ -28,7 +28,7 @@ export default defineComponent({
     },
     spin: {
       type: String as PropType<LoadingEnum>,
-      default: 'loading'
+      default: 'chase'
     },
     full: {
       type: Boolean,
@@ -62,7 +62,7 @@ export default defineComponent({
 .loading-container {
   position: absolute;
   inset: 0;
-  z-index: 9999;
+  z-index: 1001;
 
   &.is-fullscreen {
     position: fixed;

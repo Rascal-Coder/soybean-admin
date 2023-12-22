@@ -80,5 +80,9 @@ declare namespace Env {
      *  build with report
      */
     readonly VITE_BUILD_REPORT?: string;
+    /**
+     *   out-link herf is stay at current page
+     */
+    readonly VITE_OUT_LINK_STAY_CURRENT?: string;
   }
 }

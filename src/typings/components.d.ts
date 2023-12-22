@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppLoading: typeof import('./../components/common/app-loading.vue')['default']
+    BaseIframe: typeof import('./../components/base-iframe/index.vue')['default']
     BaseLoading: typeof import('./../components/base-loading/index.vue')['default']
     BetterScroll: typeof import('./../components/custom/better-scroll.vue')['default']
     ButtonIcon: typeof import('./../components/custom/button-icon.vue')['default']
