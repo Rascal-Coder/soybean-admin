@@ -12,9 +12,10 @@ export function createPermissionGuard(router: Router) {
 
     // 1. route with href
     if (to.meta.href) {
-      window.open(to.meta.href, '_blank');
-
-      isLinkStayCurrrent && next({ path: from.fullPath, replace: true, query: from.query, hash: to.hash });
+      if (isLinkStayCurrrent) {
+        window.open(to.meta.href, '_blank');
+        next({ path: from.fullPath, replace: true, query: from.query, hash: to.hash });
+      }
     }
 
     const authStore = useAuthStore();

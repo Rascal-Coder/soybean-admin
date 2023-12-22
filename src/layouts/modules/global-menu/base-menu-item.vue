@@ -1,5 +1,10 @@
 <template>
-  <ElMenuItem v-if="!item?.children" :index="item.routePath" :title="item.i18nKey ? $t(item.i18nKey) : item.label">
+  <ElMenuItem
+    v-if="!item?.children"
+    :index="item.routePath"
+    :title="item.i18nKey ? $t(item.i18nKey) : item.label"
+    @click="handleMenuClick(item)"
+  >
     <component :is="item.icon" class="mr-2"></component>
     <template #title>
       <span class="truncate">
@@ -24,6 +29,12 @@ interface Props {
   item: App.Global.Menu;
 }
 defineProps<Props>();
+const isLinkStayCurrrent = import.meta.env.VITE_OUT_LINK_STAY_CURRENT === 'Y';
+function handleMenuClick(val: App.Global.Menu) {
+  if (!isLinkStayCurrrent && val.meta?.href) {
+    window.open(val.meta?.href);
+  }
+}
 </script>
 
 <style scoped lang="scss"></style>

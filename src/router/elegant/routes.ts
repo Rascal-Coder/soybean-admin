@@ -42,7 +42,8 @@ export const generatedRoutes: GeneratedRoute[] = [
     component: 'layout.base',
     meta: {
       title: 'document',
-      i18nKey: 'route.document'
+      i18nKey: 'route.document',
+      icon: 'mdi:file-document-multiple-outline'
     },
     children: [
       {
@@ -51,7 +52,8 @@ export const generatedRoutes: GeneratedRoute[] = [
         component: 'view.document_element-plus',
         meta: {
           title: 'document_element-plus',
-          i18nKey: 'route.document_element-plus'
+          i18nKey: 'route.document_element-plus',
+          icon: 'logos:element'
         }
       },
       {
@@ -61,6 +63,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'document_project-link',
           i18nKey: 'route.document_project-link',
+          localIcon: 'logo',
           href: 'https://admin-docs.soybeanjs.cn/'
         }
       },
@@ -70,7 +73,8 @@ export const generatedRoutes: GeneratedRoute[] = [
         component: 'view.document_vite',
         meta: {
           title: 'document_vite',
-          i18nKey: 'route.document_vite'
+          i18nKey: 'route.document_vite',
+          icon: 'logos:vitejs'
         }
       },
       {
@@ -79,7 +83,8 @@ export const generatedRoutes: GeneratedRoute[] = [
         component: 'view.document_vue',
         meta: {
           title: 'document_vue',
-          i18nKey: 'route.document_vue'
+          i18nKey: 'route.document_vue',
+          icon: 'logos:vue'
         }
       }
     ]

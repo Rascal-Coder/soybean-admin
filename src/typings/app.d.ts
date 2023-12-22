@@ -221,7 +221,7 @@ declare namespace App {
     type RouteMap = import('@elegant-router/types').RouteMap;
     type RoutePath = import('@elegant-router/types').RoutePath;
     type LastLevelRouteKey = import('@elegant-router/types').LastLevelRouteKey;
-
+    type RouteMeta = import('vue-router').RouteMeta;
     /**
      * the global header props
      */
@@ -273,6 +273,8 @@ declare namespace App {
        * the menu children
        */
       children?: Menu[];
+
+      meta?: RouteMeta;
     }
 
     type Breadcrumb = Omit<Menu, 'children'> & {
