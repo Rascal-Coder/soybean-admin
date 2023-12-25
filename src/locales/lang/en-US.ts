@@ -142,6 +142,7 @@ const local: App.I18n.Schema = {
         phonePlaceholder: 'Please enter phone number',
         codePlaceholder: 'Please enter verification code',
         passwordPlaceholder: 'Please enter password',
+        captchaPlaceholder: 'Please enter captchaText',
         confirmPasswordPlaceholder: 'Please enter password again',
         codeLogin: 'Verification code login',
         confirm: 'Confirm',
@@ -200,6 +201,9 @@ const local: App.I18n.Schema = {
     email: {
       required: 'Please enter email',
       invalid: 'Email format is incorrect'
+    },
+    captcha: {
+      required: 'Please enter captcha'
     }
   },
   dropdown: {

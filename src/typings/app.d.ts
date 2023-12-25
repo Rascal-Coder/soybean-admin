@@ -365,7 +365,7 @@ declare namespace App {
 
     type FormMsg = {
       required: string;
-      invalid: string;
+      invalid?: string;
     };
 
     type Schema = {
@@ -452,6 +452,7 @@ declare namespace App {
             phonePlaceholder: string;
             codePlaceholder: string;
             passwordPlaceholder: string;
+            captchaPlaceholder: string;
             confirmPasswordPlaceholder: string;
             codeLogin: string;
             confirm: string;
@@ -496,6 +497,7 @@ declare namespace App {
         pwd: FormMsg;
         code: FormMsg;
         email: FormMsg;
+        captcha: FormMsg;
       };
 
       dropdown: Record<Global.DropdownKey, string>;

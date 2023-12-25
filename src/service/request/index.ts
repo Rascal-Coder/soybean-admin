@@ -8,9 +8,9 @@ const isHttpProxy = import.meta.env.VITE_HTTP_PROXY === 'Y';
 
 export const request = createRequest({
   baseURL: isHttpProxy ? createProxyPattern() : baseURL,
-  headers: {
-    apifoxToken: 'XL299LiMEDZ0H5h3A29PxwQXdMJqWyY2'
-  },
+  // headers: {
+  //   apifoxToken: 'XL299LiMEDZ0H5h3A29PxwQXdMJqWyY2'
+  // },
   onRequest({ options }) {
     if (options.headers) {
       const token = localStg.get('token');

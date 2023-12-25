@@ -30,6 +30,7 @@ export function useFormRules() {
         trigger: 'change'
       }
     ],
+    captcha: [createRequiredRule($t('form.captcha.required'))],
     pwd: [
       createRequiredRule($t('form.pwd.required')),
       {
