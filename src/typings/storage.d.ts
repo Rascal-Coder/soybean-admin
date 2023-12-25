@@ -47,5 +47,18 @@ declare namespace StorageType {
      * the global tabs
      */
     globalTabs: App.Global.Tab[];
+    /**
+     * the remeberMe status
+     * 1 记住 0 不记住
+     */
+    remeberMe: '1' | '0';
+    /**
+     * 用户名
+     */
+    userName: string;
+    /**
+     * 密码
+     */
+    password: string;
   }
 }

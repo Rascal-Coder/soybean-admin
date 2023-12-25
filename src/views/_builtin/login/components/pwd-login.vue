@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive, ref, onMounted } from 'vue';
 import { $t } from '@/locales';
 import { loginModuleRecord } from '@/constants/app';
 import { useRouterPush } from '@/hooks/common/router';
@@ -7,6 +7,7 @@ import { useEleForm, useFormRules } from '@/hooks/common/form';
 import { useAuthStore } from '@/store/modules/auth';
 import { ElCheckbox } from 'element-plus';
 import type { FormRules } from 'element-plus';
+import { localStg } from '@/utils/storage';
 defineOptions({
   name: 'PwdLogin'
 });
@@ -33,13 +34,27 @@ const rules = reactive<FormRules<typeof model>>({
   password: constantRules.pwd,
   captcha: constantRules.captcha
 });
+const remeberMe = ref('1');
+
 function refreshCaptcha() {
   captchaSrc.value = `/proxy/login/captcha?width=100&height=40&t=${new Date().getTime()}`;
 }
 async function handleSubmit() {
   await validate();
+  // 登录逻辑更改，替换为express接口
+  // 登录成功后如果checked remeberMe，将用户名和密码存入local
   await authStore.login(model.userName, model.password);
 }
+onMounted(() => {
+  const _remeberMe = localStg.get('remeberMe');
+  remeberMe.value = _remeberMe && _remeberMe === '1' ? '1' : '0';
+  if (remeberMe.value) {
+    const _userName = localStg.get('userName');
+    const _password = localStg.get('password');
+    model.userName = _userName!;
+    model.password = _password!;
+  }
+});
 </script>
 
 <template>
@@ -65,7 +80,7 @@ async function handleSubmit() {
     </ElFormItem>
     <ElSpace direction="vertical" :size="24" fill class="w-full">
       <div class="flex-y-center justify-between">
-        <ElCheckbox>{{ $t('page.login.pwdLogin.rememberMe') }}</ElCheckbox>
+        <ElCheckbox v-model="remeberMe">{{ $t('page.login.pwdLogin.rememberMe') }}</ElCheckbox>
         <ElButton text>{{ $t('page.login.pwdLogin.forgetPassword') }}</ElButton>
       </div>
       <ElButton type="primary" size="large" block round :loading="authStore.loginLoading" @click="handleSubmit">
