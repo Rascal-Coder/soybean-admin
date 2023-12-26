@@ -8,7 +8,6 @@ import { localStg } from '@/utils/storage';
 import { useRouteStore } from '../route';
 import { getToken, getUserInfo, clearAuthStorage } from './shared';
 import { $t } from '@/locales';
-
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const routeStore = useRouteStore();
   const { route, toLogin, redirectFromLogin } = useRouterPush(false);
@@ -51,7 +50,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     try {
       const { data: loginToken } = await fetchLogin(userName, password);
 
-      await loginByToken(loginToken);
+      await loginByToken(loginToken!);
 
       await routeStore.initAuthRoute();
 
@@ -80,7 +79,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     const { data: info } = await fetchGetUserInfo();
 
     // 2. store user info
-    localStg.set('userInfo', info);
+    localStg.set('userInfo', info!);
 
     // 3. update auth route
     token.value = loginToken.token;

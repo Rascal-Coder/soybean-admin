@@ -182,15 +182,13 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
    * init dynamic auth route
    */
   async function initDynamicAuthRoute() {
-    const {
-      data: { routes, home }
-    } = await fetchGetUserRoutes();
+    const { data } = await fetchGetUserRoutes();
 
-    handleAuthRoutes(routes);
+    handleAuthRoutes(data!.routes);
 
-    setRouteHome(home);
+    setRouteHome(data!.home);
 
-    handleUpdateRootRouteRedirect(home);
+    handleUpdateRootRouteRedirect(data!.home);
 
     setIsInitAuthRoute(true);
   }

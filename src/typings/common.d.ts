@@ -24,4 +24,9 @@ declare namespace Common {
   type Option<K> = { value: K; label: string };
 
   type YesOrNo = 'Y' | 'N';
+  /**
+   * 策略模式
+   * [状态, 为true时执行的回调函数]
+   */
+  type StrategyAction = [boolean, () => void];
 }

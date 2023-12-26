@@ -1,5 +1,4 @@
-import { localStg } from '@/utils/storage';
-import { createOfetch as createRequest } from '@sa/request';
+import { createRequest } from './request';
 import { createServiceConfig, createProxyPattern } from '~/env.config';
 
 const { baseURL, otherBaseURL } = createServiceConfig(import.meta.env);
@@ -10,15 +9,6 @@ export const request = createRequest({
   baseURL: isHttpProxy ? createProxyPattern() : baseURL,
   headers: {
     apifoxToken: 'XL299LiMEDZ0H5h3A29PxwQXdMJqWyY2'
-  },
-  onRequest({ options }) {
-    if (options.headers) {
-      const token = localStg.get('token');
-
-      const Authorization = token ? `Bearer ${token}` : '';
-
-      Object.assign(options.headers, { Authorization });
-    }
   }
 });
 

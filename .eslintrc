@@ -10,7 +10,8 @@
 				"no-undef": "off", // use tsc to check the ts code of the vue
 				"vue/no-setup-props-destructure": "off", // wait to fix this rule
 				"no-unused-expressions": "off",
-				"no-underscore-dangle": "off"
+				"no-underscore-dangle": "off",
+				"no-warning-comments": "off"
 			}
 		},
 		{
@@ -19,7 +20,8 @@
 				"no-plusplus": "off",
 				"max-params": ["error", 4],
 				"no-unused-expressions": "off",
-				"no-underscore-dangle": "off"
+				"no-underscore-dangle": "off",
+				"no-warning-comments": "off"
 			}
 		}
 	]

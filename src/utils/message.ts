@@ -54,11 +54,11 @@ const message = (type: messageType, text: string, close?: () => void, config?: M
   });
 };
 
-export const messageSuccess = (text: string, close?: () => void, config?: MessageOptions) =>
+export const messageSuccess = (text: string, config?: MessageOptions, close?: () => void) =>
   message('success', text, close, config);
-export const messageWarning = (text: string, close?: () => void, config?: MessageOptions) =>
+export const messageWarning = (text: string, config?: MessageOptions, close?: () => void) =>
   message('warning', text, close, config);
-export const messageInfo = (text: string, close?: () => void, config?: MessageOptions) =>
+export const messageInfo = (text: string, config?: MessageOptions, close?: () => void) =>
   message('info', text, close, config);
-export const messageError = (text: string, close?: () => void, config?: MessageOptions) =>
+export const messageError = (text: string, config?: MessageOptions, close?: () => void) =>
   message('error', text, close, config);

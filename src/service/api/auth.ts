@@ -6,20 +6,24 @@ import { request } from '../request';
  * @param password password
  */
 export function fetchLogin(userName: string, password: string) {
-  return request<App.Service.Response<Api.Auth.LoginToken>>('/auth/login', {
-    method: 'post',
-    body: {
+  return request.post<Api.Auth.LoginToken>(
+    '/auth/login',
+    {
       userName,
       password
+    },
+    {
+      loading: true
+      // isRetry: true // 重试 loading会关闭
     }
-  });
+  );
 }
 
 /**
  * get user info
  */
 export function fetchGetUserInfo() {
-  return request<App.Service.Response<Api.Auth.UserInfo>>('/auth/getUserInfo');
+  return request.get<Api.Auth.UserInfo>('/auth/getUserInfo');
 }
 
 /**
@@ -27,10 +31,7 @@ export function fetchGetUserInfo() {
  * @param refreshToken refresh token
  */
 export function fetchRefreshToken(refreshToken: string) {
-  return request<App.Service.Response<Api.Auth.LoginToken>>('/auth/refreshToken', {
-    method: 'post',
-    body: {
-      refreshToken
-    }
+  return request.post<Api.Auth.LoginToken>('/auth/refreshToken', {
+    refreshToken
   });
 }
