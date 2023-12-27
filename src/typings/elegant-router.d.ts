@@ -29,6 +29,9 @@ declare module "@elegant-router/types" {
     "exception_403": "/exception/403";
     "exception_404": "/exception/404";
     "exception_500": "/exception/500";
+    "function": "/function";
+    "function_axios": "/function/axios";
+    "function_loading": "/function/loading";
     "home": "/home";
     "login": "/login/:module(pwd-login|code-login|register|reset-pwd|bind-wechat)?";
     "manage": "/manage";
@@ -79,6 +82,7 @@ declare module "@elegant-router/types" {
     | "500"
     | "document"
     | "exception"
+    | "function"
     | "home"
     | "login"
     | "manage"
@@ -111,6 +115,8 @@ declare module "@elegant-router/types" {
     | "exception_403"
     | "exception_404"
     | "exception_500"
+    | "function_axios"
+    | "function_loading"
     | "home"
     | "manage_role"
     | "manage_route"

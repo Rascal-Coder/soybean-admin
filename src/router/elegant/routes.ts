@@ -43,7 +43,8 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'document',
       i18nKey: 'route.document',
-      icon: 'mdi:file-document-multiple-outline'
+      icon: 'mdi:file-document-multiple-outline',
+      order: 7
     },
     children: [
       {
@@ -53,7 +54,8 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'document_element-plus',
           i18nKey: 'route.document_element-plus',
-          icon: 'logos:element'
+          icon: 'logos:element',
+          order: 1
         }
       },
       {
@@ -64,7 +66,8 @@ export const generatedRoutes: GeneratedRoute[] = [
           title: 'document_project-link',
           i18nKey: 'route.document_project-link',
           localIcon: 'logo',
-          href: 'https://admin-docs.soybeanjs.cn/'
+          href: 'https://admin-docs.soybeanjs.cn/',
+          order: 2
         }
       },
       {
@@ -74,7 +77,8 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'document_vite',
           i18nKey: 'route.document_vite',
-          icon: 'logos:vitejs'
+          icon: 'logos:vitejs',
+          order: 3
         }
       },
       {
@@ -84,7 +88,8 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'document_vue',
           i18nKey: 'route.document_vue',
-          icon: 'logos:vue'
+          icon: 'logos:vue',
+          order: 4
         }
       }
     ]
@@ -96,7 +101,7 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'exception',
       i18nKey: 'route.exception',
-      order: 7,
+      order: 6,
       icon: 'ant-design:exception-outlined'
     },
     children: [
@@ -128,6 +133,38 @@ export const generatedRoutes: GeneratedRoute[] = [
           title: 'exception_500',
           i18nKey: 'route.exception_500',
           icon: 'ic:baseline-wifi-off'
+        }
+      }
+    ]
+  },
+  {
+    name: 'function',
+    path: '/function',
+    component: 'layout.base',
+    meta: {
+      title: 'function',
+      i18nKey: 'route.function',
+      icon: 'icon-park-outline:all-application'
+    },
+    children: [
+      {
+        name: 'function_axios',
+        path: '/function/axios',
+        component: 'view.function_axios',
+        meta: {
+          title: 'function_axios',
+          i18nKey: 'route.function_axios',
+          icon: 'simple-icons:axios'
+        }
+      },
+      {
+        name: 'function_loading',
+        path: '/function/loading',
+        component: 'view.function_loading',
+        meta: {
+          title: 'function_loading',
+          i18nKey: 'route.function_loading',
+          icon: 'uiw:loading'
         }
       }
     ]

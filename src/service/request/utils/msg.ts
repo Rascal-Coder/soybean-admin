@@ -1,5 +1,6 @@
 import { ERROR_MSG_DURATION, NO_ERROR_MSG_CODE } from '@/constants';
-import { messageError } from '@/utils/message';
+import { messageError, messageSuccess } from '@/utils/message';
+import type { AxiosResponse } from 'axios';
 /** 错误消息栈，防止同一错误同时出现 */
 const errorMsgStack = new Map<string | number, string>([]);
 
@@ -26,4 +27,10 @@ export function showErrorMsg(error: App.Service.RequestError) {
   setTimeout(() => {
     removeErrorMsg(error);
   }, ERROR_MSG_DURATION);
+}
+export function showSuccessMsg(response: AxiosResponse<any, any>, msgKey: App.Service.BackendResultConfig['msgKey']) {
+  const { successMessage, method } = response.config as App.Service.ExtraAxiosRequestConfig;
+  if (method === 'get') return;
+  const backend = response.data;
+  successMessage && messageSuccess(backend[msgKey]);
 }

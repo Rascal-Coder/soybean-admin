@@ -132,7 +132,10 @@ const local: App.I18n.Schema = {
     'document_element-plus': 'ElementPlus 文档',
     document_vite: 'Vite 文档',
     document_vue: 'Vue 文档',
-    'document_project-link': '项目文档(外链)'
+    'document_project-link': '项目文档(外链)',
+    function: '功能',
+    function_axios: 'Axios',
+    function_loading: 'Loading'
   },
   page: {
     login: {

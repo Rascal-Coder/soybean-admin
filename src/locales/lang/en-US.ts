@@ -132,7 +132,10 @@ const local: App.I18n.Schema = {
     'document_element-plus': 'ElementPlus Document',
     document_vite: 'Vite Document',
     document_vue: 'Vue Document',
-    'document_project-link': 'Project Document(Link)'
+    'document_project-link': 'Project Document(Link)',
+    function: 'Function',
+    function_axios: 'Axios',
+    function_loading: 'Loading'
   },
   page: {
     login: {

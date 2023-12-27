@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onActivated } from 'vue';
 
-console.log('setup');
+window.console.log('setup');
 
 onActivated(() => {
-  console.log('onActivated');
+  window.console.log('onActivated');
 });
 </script>
 

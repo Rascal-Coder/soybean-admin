@@ -8,14 +8,24 @@ interface RequestParam {
   data?: any;
   axiosConfig?: AxiosRequestConfig & App.Service.RequestConfigExtra;
 }
+const defaultConfig: App.Service.RequestConfigExtra = {
+  cancelSame: false,
+  isRetry: false,
+  retryCount: 3,
+  loading: false,
+  errorMessage: true,
+  successMessage: false
+};
 /**
  * 创建请求
  * @param axiosConfig - axios配置
  * @param backendConfig - 后端接口字段配置
  */
-export function createRequest(axiosConfig: AxiosRequestConfig, backendConfig?: App.Service.BackendResultConfig) {
-  const customInstance = new CustomAxiosInstance(axiosConfig, backendConfig);
-
+export function createRequest(
+  axiosConfig: AxiosRequestConfig,
+  backendConfig?: Partial<App.Service.BackendResultConfig>
+) {
+  const customInstance = new CustomAxiosInstance(axiosConfig, backendConfig ?? {});
   /**
    * 异步promise请求
    * @param param - 请求参数
@@ -27,14 +37,10 @@ export function createRequest(axiosConfig: AxiosRequestConfig, backendConfig?: A
   async function asyncRequest<T>(param: RequestParam): Promise<App.Service.RequestResult<T>> {
     const { url } = param;
     const method = param.method || 'get';
-    const defaultConfig: App.Service.RequestConfigExtra = {
-      cancelSame: false,
-      isRetry: false,
-      retryCount: 3,
-      loading: false
-    };
+
     const { instance, loadingInstance } = customInstance;
-    const _axiosConfig = Object.assign(defaultConfig, param.axiosConfig);
+    const _axiosConfig = { ...defaultConfig, ...param.axiosConfig };
+
     const { loading, isRetry } = _axiosConfig;
     const res = (await getRequestResponse({
       instance,

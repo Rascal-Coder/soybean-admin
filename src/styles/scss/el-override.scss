@@ -2,7 +2,12 @@
 	--el-menu-item-height: 45px;
 	--el-menu-base-level-padding: 10px;
 }
-
+.el-scrollbar__bar {
+	z-index: 4;
+}
+.el-scrollbar__wrap {
+	max-height: 100%;
+}
 #theme-drawer {
 	.el-drawer__header {
 		padding: var(--el-drawer-padding-primary) !important;

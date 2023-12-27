@@ -37,7 +37,11 @@ export default defineComponent({
   },
   setup({ textColor, spin, full, background, modal, text }) {
     const renderBaseLoading = () => {
-      return <SvgIcon local-icon="loading" class="loading-icon" />;
+      return (
+        <div class="loading-icon" style={{ color: textColor }}>
+          <SvgIcon icon="mingcute:loading-fill" class="text-48px" />
+        </div>
+      );
     };
     const renderBasicLoading = () => {
       return h(loadingMap.get(spin) as Component, { color: textColor });
@@ -77,7 +81,7 @@ export default defineComponent({
 
     .text {
       width: 100%;
-      margin: 8px 0;
+      margin: 15px 0;
     }
 
     .loading-icon {

@@ -1,15 +1,15 @@
-import type { LoadingEnum } from '@/enum';
 import BaseLoading from '@/components/base-loading/index.vue';
 import type { ComponentPublicInstance } from 'vue';
 import { createApp } from 'vue';
 interface CustomLoadingInstance extends ComponentPublicInstance {
   $el: HTMLElement;
 }
+export type AnimationTypes = ['loading', 'pulse', 'rect', 'plane', 'cube', 'preloader', 'chase', 'dot'];
 type LoadingType = {
   text?: string;
   textColor?: string;
   background?: string;
-  spin?: LoadingEnum;
+  spin?: AnimationTypes[number];
   minTime?: number;
   modal?: boolean;
 };

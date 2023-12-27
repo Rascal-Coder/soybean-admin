@@ -9,7 +9,7 @@ import {
   REQUEST_TIMEOUT_MSG
 } from '@/constants';
 import { exeStrategyActions } from '@/utils/common';
-import { showErrorMsg } from './msg';
+// import { showErrorMsg } from './msg';
 
 type ErrorStatus = keyof typeof ERROR_STATUS;
 
@@ -52,7 +52,7 @@ export function handleAxiosError(axiosError: AxiosError) {
 
   exeStrategyActions(actions);
 
-  showErrorMsg(error);
+  // showErrorMsg(error);
 
   return error;
 }
@@ -78,7 +78,7 @@ export function handleResponseError(response: AxiosResponse) {
     Object.assign(error, { type: 'http', code: errorCode, msg });
   }
 
-  showErrorMsg(error);
+  // errorMessage && showErrorMsg(error);
 
   return error;
 }
@@ -95,7 +95,7 @@ export function handleBackendError(backendResult: Record<string, any>, config: A
     msg: backendResult[msgKey]
   };
 
-  showErrorMsg(error);
+  // showErrorMsg(error);
 
   return error;
 }

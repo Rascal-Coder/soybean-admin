@@ -644,7 +644,10 @@ declare namespace App {
       retryCount?: number;
       isRetry?: boolean;
       loading?: boolean;
+      errorMessage?: boolean;
+      successMessage?: boolean;
       [key: string]: any;
     }
+    type ExtraAxiosRequestConfig = import('axios').InternalAxiosRequestConfig & App.Service.RequestConfigExtra;
   }
 }

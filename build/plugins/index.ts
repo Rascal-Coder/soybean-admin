@@ -12,6 +12,7 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 import { setupCompression } from './compression';
 import { setupImagemin } from './imagemin';
 import { setupVisualizer } from './visualizer';
+import { setupMock } from './mock';
 export function setupVitePlugins(viteEnv: Env.ImportMeta, isBuild: boolean) {
   const { VITE_APP_TITLE, VITE_BUILD_IMAGEMIN, VITE_BUILD_REPORT } = viteEnv;
   const isBuildImagemin = VITE_BUILD_IMAGEMIN === 'Y';
@@ -40,6 +41,7 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, isBuild: boolean) {
     setupBuildInfo(),
     setupElegantRouter(),
     setupUnocss(viteEnv),
+    setupMock(isBuild),
     ...setupUnplugin(viteEnv),
     progress()
   ];
