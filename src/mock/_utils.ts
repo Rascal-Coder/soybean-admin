@@ -6,9 +6,9 @@ export const resultSuccess = (data: any = null, message = '请求成功') => {
   };
 };
 
-export const resultError = (message = '请求失败') => {
+export const resultError = (message = '请求失败', code = 500) => {
   return {
-    code: 500,
+    code,
     data: null,
     message
   };

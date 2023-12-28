@@ -54,9 +54,6 @@ importers:
       element-plus:
         specifier: ^2.4.3
         version: 2.4.4(vue@3.3.8)
-      faker:
-        specifier: ^6.6.6
-        version: 6.6.6
       form-data:
         specifier: ^4.0.0
         version: 4.0.0
