@@ -19,7 +19,7 @@
       <ElButton type="primary" class="mb5" @click="handleRetry">错误后会重新请求三次</ElButton>
     </BaseBox>
     <BaseBox title="轮询请求 (vue-request)">
-      <el-statistic title="User count" :value="userCount" />
+      <ElStatistic title="User count" :value="userCount" />
     </BaseBox>
   </div>
 </template>

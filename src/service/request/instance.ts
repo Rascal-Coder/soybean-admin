@@ -7,10 +7,12 @@ import {
   handleServiceResult,
   transformRequestData,
   showErrorMsg,
-  showSuccessMsg
+  showSuccessMsg,
+  handleRefreshToken
 } from './utils';
 import { localStg } from '@/utils/storage';
 import { AxiosLoading, AxiosCancel } from './hooks';
+import { REFRESH_TOKEN_CODE } from '@/constants';
 
 type RefreshRequestQueue = (config: AxiosRequestConfig) => void;
 const defaultBackendConfig: App.Service.BackendResultConfig = {
@@ -88,14 +90,14 @@ export default class CustomAxiosInstance {
         const { errorMessage } = handleAxiosErrorConfig;
 
         errorMessage && showErrorMsg(error);
-        return handleServiceResult(error, null);
+        return Promise.reject(error);
       }
     );
     this.instance.interceptors.response.use(
-      ((response: AxiosResponse<any, any>) => {
-        const { status } = response;
-        const { errorMessage } = response.config as App.Service.ExtraAxiosRequestConfig;
-        axiosCancel.removePending(response.config);
+      (async (response: AxiosResponse<any, any>) => {
+        const { status, config } = response;
+        const { errorMessage } = config as App.Service.ExtraAxiosRequestConfig;
+        axiosCancel.removePending(config);
         if (status === 200 || status < 300 || status === 304) {
           const backend = response.data;
           const { codeKey, dataKey, successCode, msgKey } = this.backendConfig;
@@ -106,7 +108,26 @@ export default class CustomAxiosInstance {
           }
 
           // TODO: token失效, 刷新token
-
+          // token失效, 刷新token
+          if (REFRESH_TOKEN_CODE.includes(backend[codeKey])) {
+            // 原始请求
+            const originRequest = new Promise(resolve => {
+              this.retryQueues.push((refreshConfig: AxiosRequestConfig) => {
+                config.headers.Authorization = refreshConfig.headers?.Authorization;
+                resolve(this.instance.request(config));
+              });
+            });
+            if (!this.isRefreshing) {
+              this.isRefreshing = true;
+              const refreshConfig = await handleRefreshToken(response.config);
+              if (refreshConfig) {
+                this.retryQueues.map(cb => cb(refreshConfig));
+              }
+              this.retryQueues = [];
+              this.isRefreshing = false;
+            }
+            return originRequest;
+          }
           const error = handleBackendError(backend, this.backendConfig);
           errorMessage && showErrorMsg(error);
           return handleServiceResult(error, null);
@@ -121,13 +142,11 @@ export default class CustomAxiosInstance {
         const handleAxiosErrorConfig = { ...axiosError.config } as App.Service.ExtraAxiosRequestConfig;
 
         axiosCancel.removePending(axiosError.config || {});
-        const { isRetry, errorMessage } = handleAxiosErrorConfig;
+        const { errorMessage } = handleAxiosErrorConfig;
         const error = handleAxiosError(axiosError);
         errorMessage && showErrorMsg(error);
-        if (isRetry) {
-          return Promise.reject(axiosError.response);
-        }
-        return handleServiceResult(error, null);
+
+        return Promise.reject(error);
       }
     );
   }

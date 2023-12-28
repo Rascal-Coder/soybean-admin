@@ -19,7 +19,9 @@ export const postTestApi = (data?: any) => testRequest.post(Api.POST_TEST, data,
 
 export const putTestApi = () => testRequest.put(Api.PUT_TEST);
 
-export const deleteTestApi = () => testRequest.delete(Api.DELETE_TEST, { errorMessage: false });
+export const deleteTestApi = () => {
+  return testRequest.delete(Api.DELETE_TEST, { errorMessage: false });
+};
 
 export const sameTestApi = () => testRequest.get(Api.SAME_TEST, { cancelSame: true });
 

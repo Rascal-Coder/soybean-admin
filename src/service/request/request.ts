@@ -10,7 +10,6 @@ interface RequestParam {
 }
 const defaultConfig: App.Service.RequestConfigExtra = {
   cancelSame: false,
-  isRetry: false,
   retryCount: 3,
   loading: false,
   errorMessage: true,
@@ -41,19 +40,27 @@ export function createRequest(
     const { instance, loadingInstance } = customInstance;
     const _axiosConfig = { ...defaultConfig, ...param.axiosConfig };
 
-    const { loading, isRetry } = _axiosConfig;
-    const res = (await getRequestResponse({
-      instance,
-      method,
-      url,
-      data: param.data,
-      config: _axiosConfig
-    })) as App.Service.RequestResult<T>;
-    if (loading && !isRetry) {
-      loadingInstance.closeLoading();
-    }
-
-    return res;
+    const { loading } = _axiosConfig;
+    return new Promise((resolve, reject) => {
+      getRequestResponse({
+        instance,
+        method,
+        url,
+        data: param.data,
+        config: _axiosConfig
+      })
+        .then((res: App.Service.RequestResult<T>) => {
+          resolve(res);
+        })
+        .catch((e: App.Service.RequestError) => {
+          reject(e);
+        })
+        .finally(() => {
+          if (loading) {
+            loadingInstance.closeLoading();
+          }
+        });
+    });
   }
 
   /**
@@ -115,5 +122,6 @@ async function getRequestResponse(params: {
   } else {
     res = await instance[method](url, data, config);
   }
+
   return res;
 }

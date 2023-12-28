@@ -642,7 +642,6 @@ declare namespace App {
     interface RequestConfigExtra {
       cancelSame?: boolean;
       retryCount?: number;
-      isRetry?: boolean;
       loading?: boolean;
       errorMessage?: boolean;
       successMessage?: boolean;
