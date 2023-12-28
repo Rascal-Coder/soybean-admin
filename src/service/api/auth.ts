@@ -1,4 +1,4 @@
-import { request } from '../request';
+import { testRequest } from '../request';
 
 /**
  * login
@@ -6,8 +6,8 @@ import { request } from '../request';
  * @param password password
  */
 export function fetchLogin(userName: string, password: string) {
-  return request.post<Api.Auth.LoginToken>(
-    '/auth/login',
+  return testRequest.post<Api.Auth.LoginToken>(
+    '/login',
     {
       userName,
       password
@@ -23,7 +23,7 @@ export function fetchLogin(userName: string, password: string) {
  * get user info
  */
 export function fetchGetUserInfo() {
-  return request.get<Api.Auth.UserInfo>('/auth/getUserInfo');
+  return testRequest.get<Api.Auth.UserInfo>('/getUserInfo');
 }
 
 /**
@@ -31,7 +31,7 @@ export function fetchGetUserInfo() {
  * @param refreshToken refresh token
  */
 export function fetchRefreshToken(refreshToken: string) {
-  return request.post<Api.Auth.LoginToken>('/auth/refreshToken', {
+  return testRequest.post<Api.Auth.LoginToken>('/refreshToken', {
     refreshToken
   });
 }

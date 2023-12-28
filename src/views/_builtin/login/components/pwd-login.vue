@@ -23,7 +23,7 @@ interface FormModel {
 
 const model: FormModel = reactive({
   userName: 'Soybean',
-  password: '123456'
+  password: 'soybean123'
 });
 
 const rules = reactive<FormRules<typeof model>>({

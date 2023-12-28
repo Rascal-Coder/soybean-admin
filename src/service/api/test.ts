@@ -25,7 +25,7 @@ export const deleteTestApi = () => {
 
 export const sameTestApi = () => testRequest.get(Api.SAME_TEST, { cancelSame: true });
 
-export const retryApi = () => testRequest.get(Api.RETRY_TEST, { isRetry: true, loading: true });
+export const retryApi = () => testRequest.get(Api.RETRY_TEST, { loading: true });
 export function pollingApi() {
   const data = faker.number.int({ max: 10000 });
   return new Promise<number>(resolve => {

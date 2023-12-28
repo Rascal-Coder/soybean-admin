@@ -11,7 +11,6 @@ export async function handleRefreshToken(axiosConfig: AxiosRequestConfig) {
   const { resetStore } = useAuthStore();
   const refreshToken = localStg.get('refreshToken') || '';
   const { data } = await fetchRefreshToken(refreshToken);
-  console.log('data', data);
 
   if (data) {
     localStg.set('token', data.token);

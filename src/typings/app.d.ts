@@ -645,7 +645,6 @@ declare namespace App {
       loading?: boolean;
       errorMessage?: boolean;
       successMessage?: boolean;
-      [key: string]: any;
     }
     type ExtraAxiosRequestConfig = import('axios').InternalAxiosRequestConfig & App.Service.RequestConfigExtra;
   }

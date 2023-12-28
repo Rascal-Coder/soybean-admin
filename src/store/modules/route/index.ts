@@ -7,7 +7,7 @@ import { SetupStoreId } from '@/enum';
 import { router } from '@/router';
 import { createRoutes, getAuthVueRoutes, ROOT_ROUTE } from '@/router/routes';
 import { getRoutePath, getRouteName } from '@/router/elegant/transform';
-import { fetchGetUserRoutes, fetchIsRouteExist } from '@/service/api';
+import { fetchGetUserRoutes } from '@/service/api';
 import {
   filterAuthRoutesByRoles,
   getGlobalMenusByAuthRoutes,
@@ -267,15 +267,12 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
       return false;
     }
 
-    if (authRouteMode.value === 'static') {
-      const { authRoutes } = createRoutes();
+    const { authRoutes } = createRoutes();
 
-      return isRouteExistByRouteName(routeName, authRoutes);
-    }
+    return isRouteExistByRouteName(routeName, authRoutes);
+    // const { data } = await fetchIsRouteExist(routeName);
 
-    const { data } = await fetchIsRouteExist(routeName);
-
-    return data;
+    // return data;
   }
 
   /**

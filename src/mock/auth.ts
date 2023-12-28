@@ -42,7 +42,6 @@ export default [
       // 这里的mock插件得到的字段是authorization, 前端传递的是Authorization字段
       const { authorization = '' } = options.headers;
       const REFRESH_TOKEN_CODE = 66666;
-
       if (!authorization) {
         return resultError('用户已失效或不存在！', REFRESH_TOKEN_CODE);
       }
@@ -52,7 +51,7 @@ export default [
         roles: ['user']
       };
       const isInUser = userModel.some(item => {
-        const flag = item.token === authorization;
+        const flag = `Bearer ${item.token}` === authorization;
         if (flag) {
           const { userId: itemUserId, userName, roles } = item;
           Object.assign(userInfo, { userId: itemUserId, userName, roles });
@@ -68,7 +67,7 @@ export default [
     }
   },
   {
-    url: '/mock/updateToken',
+    url: '/mock/refreshToken',
     method: 'post',
     response: (options: MockOption) => {
       const { refreshToken = '' } = options.body;

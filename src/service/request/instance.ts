@@ -63,7 +63,7 @@ export default class CustomAxiosInstance {
     this.instance.interceptors.request.use(
       async (config: App.Service.ExtraAxiosRequestConfig): Promise<App.Service.ExtraAxiosRequestConfig> => {
         const handleConfig = { ...config };
-        const { cancelSame, loading, isRetry } = handleConfig;
+        const { cancelSame, loading } = handleConfig;
         if (handleConfig.headers) {
           // 数据转换
           const contentType = handleConfig.headers['Content-Type'] as UnionKey.ContentType;
@@ -75,7 +75,7 @@ export default class CustomAxiosInstance {
 
           Object.assign(handleConfig.headers, { Authorization });
         }
-        if (loading && !isRetry) {
+        if (loading) {
           this.loadingInstance.addLoading();
         }
         if (cancelSame) {
@@ -107,7 +107,6 @@ export default class CustomAxiosInstance {
             return handleServiceResult(null, backend[dataKey]);
           }
 
-          // TODO: token失效, 刷新token
           // token失效, 刷新token
           if (REFRESH_TOKEN_CODE.includes(backend[codeKey])) {
             // 原始请求

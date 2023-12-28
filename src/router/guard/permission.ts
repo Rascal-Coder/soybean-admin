@@ -4,6 +4,7 @@ import { useAuthStore } from '@/store/modules/auth';
 import { useRouteStore } from '@/store/modules/route';
 import { localStg } from '@/utils/storage';
 const isLinkStayCurrrent = import.meta.env.VITE_OUT_LINK_STAY_CURRENT === 'Y';
+const authRouteMode = import.meta.env.VITE_AUTH_ROUTE_MODE;
 export function createPermissionGuard(router: Router) {
   router.beforeEach(async (to, from, next) => {
     const pass = await createAuthRouteGuard(to, from, next);
@@ -102,14 +103,16 @@ async function createAuthRouteGuard(
 
   // 3. If the route is initialized, check whether the route exists.
   if (routeStore.isInitAuthRoute && isNotFoundRoute) {
-    const exist = await routeStore.getIsAuthRouteExist(to.path as RoutePath);
+    if (authRouteMode === 'static') {
+      const notExist = await routeStore.getIsAuthRouteExist(to.path as RoutePath);
 
-    if (exist) {
-      const noPermissionRoute: RouteKey = '403';
+      if (notExist) {
+        const noPermissionRoute: RouteKey = '403';
 
-      next({ name: noPermissionRoute });
+        next({ name: noPermissionRoute });
 
-      return false;
+        return false;
+      }
     }
 
     return true;
