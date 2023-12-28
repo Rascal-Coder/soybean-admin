@@ -29,7 +29,6 @@
 		"@sa/hooks": "workspace:*",
 		"@sa/materials": "workspace:*",
 		"@sa/utils": "workspace:*",
-		"@types/faker": "^6.6.9",
 		"@types/qs": "^6.9.11",
 		"@vueuse/core": "10.6.1",
 		"axios": "1.6.2",
