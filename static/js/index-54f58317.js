@@ -1,1 +1,0 @@
-import{_ as e}from"./look-forward.vue_vue_type_script_setup_true_lang-c7844e05.js";import{k as n,aG as t,o as a,c}from"./index-7ece2296.js";const i=n({__name:"index",setup(s){return console.log("setup"),t(()=>{console.log("onActivated")}),(r,_)=>{const o=e;return a(),c(o)}}});export{i as default};
