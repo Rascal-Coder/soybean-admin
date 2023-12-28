@@ -1,0 +1,1 @@
+import{_ as c}from"./look-forward.vue_vue_type_script_setup_true_lang-fc2f3c0d.js";import{_ as r,o as e,c as n}from"./index-25253962.js";const _={};function t(s,a){const o=c;return e(),n(o)}const i=r(_,[["render",t]]);export{i as default};
