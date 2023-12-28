@@ -35,8 +35,12 @@ import {
   pollingApi
 } from '@/service/api/test';
 import { reactive, computed } from 'vue';
+/**
+ * @description 一个 Vue 请求库 https://www.attojs.com/
+ */
 import { useRequest } from 'vue-request';
 import gsap from 'gsap';
+
 defineOptions({
   name: 'Axios'
 });

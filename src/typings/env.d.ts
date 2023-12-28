@@ -84,5 +84,9 @@ declare namespace Env {
      *   out-link herf is stay at current page
      */
     readonly VITE_OUT_LINK_STAY_CURRENT?: string;
+    /**
+     *  是否开启cdn替换import
+     */
+    readonly VITE_CDN?: string;
   }
 }
