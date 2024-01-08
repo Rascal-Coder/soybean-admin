@@ -1,1 +1,0 @@
-import{_ as c}from"./index.vue_vue_type_script_setup_true_lang-33d0dacd.js";import{k as n,r as o,o as r,c as t}from"./index-b0f5fc9b.js";const i=n({__name:"index",setup(a){const e=o("https://cn.vitejs.dev/");return(_,m)=>{const s=c;return r(),t(s,{src:e.value},null,8,["src"])}}});export{i as default};
