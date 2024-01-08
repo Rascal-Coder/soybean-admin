@@ -3,7 +3,7 @@ import { routeModel, userModel } from './model';
 import type { MockOption } from './_types';
 import { resultSuccess } from './_utils';
 import type { GeneratedRoute } from '@elegant-router/types';
-import { sortRoutes } from '@/utils/common';
+import { sortRoutes } from '@/utils/routes';
 export default [
   {
     url: '/mock/getUserRoutes',
