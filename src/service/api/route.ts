@@ -1,18 +1,10 @@
-import { request } from '../request';
+import { testRequest } from '../request';
 
 /**
- * get user routes
- * @param example whether to use example data, default: 0
+ * 获取用户路由数据
+ * @param userId - 用户id
+ * @description 后端根据用户id查询到对应的角色类型，并将路由筛选出对应角色的路由数据返回前端
  */
-export function fetchGetUserRoutes(example: '0' | '1' = '0') {
-  return request.get<Api.Route.UserRoute>('/route/getUserRoutes', { params: { example } });
-}
-
-/**
- * whether the route is exist
- * @param routeName route name
- * @param example whether to use example data, default: 0
- */
-export function fetchIsRouteExist(routeName: string, example: '0' | '1' = '0') {
-  return request.get<boolean>('/route/isRouteExist', { params: { routeName, example } });
+export function fetchUserRoutes(userId: string) {
+  return testRequest.post<Api.Route.UserRoute>('/getUserRoutes', { userId });
 }

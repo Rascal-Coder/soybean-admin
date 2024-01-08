@@ -135,7 +135,7 @@ export default class CustomAxiosInstance {
         const error = handleResponseError(response);
         errorMessage && showErrorMsg(error);
         return handleServiceResult(error, null);
-      }) as unknown as (response: AxiosResponse<any, any>) => Promise<AxiosResponse<any, any>>,
+      }) as (response: AxiosResponse<any, any>) => Promise<AxiosResponse<any, any>>,
       (axiosError: AxiosError) => {
         if (axiosError.code === 'ERR_CANCELED') return null;
         const handleAxiosErrorConfig = { ...axiosError.config } as App.Service.ExtraAxiosRequestConfig;

@@ -3,11 +3,12 @@ import type { RouteRecordRaw } from 'vue-router';
 import { defineStore } from 'pinia';
 import { useBoolean } from '@sa/hooks';
 import type { ElegantConstRoute, CustomRoute, RouteKey, LastLevelRouteKey, RouteMap } from '@elegant-router/types';
+
 import { SetupStoreId } from '@/enum';
 import { router } from '@/router';
 import { createRoutes, getAuthVueRoutes, ROOT_ROUTE } from '@/router/routes';
 import { getRoutePath, getRouteName } from '@/router/elegant/transform';
-import { fetchGetUserRoutes } from '@/service/api';
+import { fetchUserRoutes } from '@/service/api';
 import {
   filterAuthRoutesByRoles,
   getGlobalMenusByAuthRoutes,
@@ -20,6 +21,7 @@ import {
 import { useAppStore } from '../app';
 import { useAuthStore } from '../auth';
 import { useTabStore } from '../tab';
+import { localStg } from '@/utils/storage';
 
 export const useRouteStore = defineStore(SetupStoreId.Route, () => {
   const appStore = useAppStore();
@@ -171,7 +173,7 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
 
     const filteredAuthRoutes = filterAuthRoutesByRoles(authRoutes, authStore.userInfo.roles);
 
-    sortRoutes(filteredAuthRoutes);
+    // sortRoutes(filteredAuthRoutes);
 
     handleAuthRoutes(filteredAuthRoutes);
 
@@ -182,7 +184,14 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
    * init dynamic auth route
    */
   async function initDynamicAuthRoute() {
-    const { data } = await fetchGetUserRoutes();
+    const { userId } = localStg.get('userInfo') || {};
+
+    if (!userId) {
+      throw new Error('userId 不能为空!');
+    }
+    const { data } = await fetchUserRoutes(userId);
+
+    // sortRoutes(data!.routes);
 
     handleAuthRoutes(data!.routes);
 
@@ -207,18 +216,6 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     getCacheRoutes(vueRoutes);
   }
 
-  /**
-   * sort routes
-   * @param routes auth routes
-   */
-  function sortRoutes(routes: ElegantConstRoute[]) {
-    routes.sort((a, b) => a.meta!.order! - b.meta!.order!);
-    routes.forEach(item => {
-      if (item.children) {
-        sortRoutes(item.children);
-      }
-    });
-  }
   /**
    * add routes to vue router
    * @param routes vue routes
@@ -270,9 +267,6 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     const { authRoutes } = createRoutes();
 
     return isRouteExistByRouteName(routeName, authRoutes);
-    // const { data } = await fetchIsRouteExist(routeName);
-
-    // return data;
   }
 
   /**

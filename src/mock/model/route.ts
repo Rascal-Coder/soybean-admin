@@ -388,64 +388,64 @@ export const routeModel: Record<Business.Auth.RoleType, GeneratedRoute[]> = {
         }
       ]
     },
-    {
-      name: 'document',
-      path: '/document',
-      component: 'layout.base',
-      meta: {
-        title: 'document',
-        i18nKey: 'route.document',
-        icon: 'mdi:file-document-multiple-outline',
-        order: 7
-      },
-      children: [
-        {
-          name: 'document_element-plus',
-          path: '/document/element-plus',
-          component: 'view.document_element-plus',
-          meta: {
-            title: 'document_element-plus',
-            i18nKey: 'route.document_element-plus',
-            icon: 'logos:element',
-            order: 1
-          }
-        },
-        {
-          name: 'document_project-link',
-          path: '/document/project-link',
-          component: 'view.document_project-link',
-          meta: {
-            title: 'document_project-link',
-            i18nKey: 'route.document_project-link',
-            localIcon: 'logo',
-            href: 'https://admin-docs.soybeanjs.cn/',
-            order: 2
-          }
-        },
-        {
-          name: 'document_vite',
-          path: '/document/vite',
-          component: 'view.document_vite',
-          meta: {
-            title: 'document_vite',
-            i18nKey: 'route.document_vite',
-            icon: 'logos:vitejs',
-            order: 3
-          }
-        },
-        {
-          name: 'document_vue',
-          path: '/document/vue',
-          component: 'view.document_vue',
-          meta: {
-            title: 'document_vue',
-            i18nKey: 'route.document_vue',
-            icon: 'logos:vue',
-            order: 4
-          }
-        }
-      ]
-    },
+    // {
+    //   name: 'document',
+    //   path: '/document',
+    //   component: 'layout.base',
+    //   meta: {
+    //     title: 'document',
+    //     i18nKey: 'route.document',
+    //     icon: 'mdi:file-document-multiple-outline',
+    //     order: 7
+    //   },
+    //   children: [
+    //     {
+    //       name: 'document_element-plus',
+    //       path: '/document/element-plus',
+    //       component: 'view.document_element-plus',
+    //       meta: {
+    //         title: 'document_element-plus',
+    //         i18nKey: 'route.document_element-plus',
+    //         icon: 'logos:element',
+    //         order: 1
+    //       }
+    //     },
+    //     {
+    //       name: 'document_project-link',
+    //       path: '/document/project-link',
+    //       component: 'view.document_project-link',
+    //       meta: {
+    //         title: 'document_project-link',
+    //         i18nKey: 'route.document_project-link',
+    //         localIcon: 'logo',
+    //         href: 'https://admin-docs.soybeanjs.cn/',
+    //         order: 2
+    //       }
+    //     },
+    //     {
+    //       name: 'document_vite',
+    //       path: '/document/vite',
+    //       component: 'view.document_vite',
+    //       meta: {
+    //         title: 'document_vite',
+    //         i18nKey: 'route.document_vite',
+    //         icon: 'logos:vitejs',
+    //         order: 3
+    //       }
+    //     },
+    //     {
+    //       name: 'document_vue',
+    //       path: '/document/vue',
+    //       component: 'view.document_vue',
+    //       meta: {
+    //         title: 'document_vue',
+    //         i18nKey: 'route.document_vue',
+    //         icon: 'logos:vue',
+    //         order: 4
+    //       }
+    //     }
+    //   ]
+    // },
     {
       name: 'multi-menu',
       path: '/multi-menu',
@@ -586,39 +586,39 @@ export const routeModel: Record<Business.Auth.RoleType, GeneratedRoute[]> = {
         }
       ]
     },
-    {
-      name: 'function',
-      path: '/function',
-      component: 'layout.base',
-      meta: {
-        title: 'function',
-        i18nKey: 'route.function',
-        icon: 'icon-park-outline:all-application',
-        order: 6
-      },
-      children: [
-        {
-          name: 'function_axios',
-          path: '/function/axios',
-          component: 'view.function_axios',
-          meta: {
-            title: 'function_axios',
-            i18nKey: 'route.function_axios',
-            icon: 'simple-icons:axios'
-          }
-        },
-        {
-          name: 'function_loading',
-          path: '/function/loading',
-          component: 'view.function_loading',
-          meta: {
-            title: 'function_loading',
-            i18nKey: 'route.function_loading',
-            icon: 'uiw:loading'
-          }
-        }
-      ]
-    },
+    // {
+    //   name: 'function',
+    //   path: '/function',
+    //   component: 'layout.base',
+    //   meta: {
+    //     title: 'function',
+    //     i18nKey: 'route.function',
+    //     icon: 'icon-park-outline:all-application',
+    //     order: 6
+    //   },
+    //   children: [
+    //     {
+    //       name: 'function_axios',
+    //       path: '/function/axios',
+    //       component: 'view.function_axios',
+    //       meta: {
+    //         title: 'function_axios',
+    //         i18nKey: 'route.function_axios',
+    //         icon: 'simple-icons:axios'
+    //       }
+    //     },
+    //     {
+    //       name: 'function_loading',
+    //       path: '/function/loading',
+    //       component: 'view.function_loading',
+    //       meta: {
+    //         title: 'function_loading',
+    //         i18nKey: 'route.function_loading',
+    //         icon: 'uiw:loading'
+    //       }
+    //     }
+    //   ]
+    // },
     {
       name: 'document',
       path: '/document',

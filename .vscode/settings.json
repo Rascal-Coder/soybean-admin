@@ -48,5 +48,6 @@
 		"adapter": "middleware"
 	},
 	"git.enableSmartCommit": true,
-	"editor.guides.bracketPairs": "active"
+	"editor.guides.bracketPairs": "active",
+	"liveServer.settings.port": 5501
 }

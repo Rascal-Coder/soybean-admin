@@ -3,7 +3,7 @@ import type { ElegantConstRoute, RouteKey, RouteMap, LastLevelRouteKey } from '@
 import { useSvgIconRender } from '@sa/hooks';
 import { $t } from '@/locales';
 import SvgIcon from '@/components/custom/svg-icon.vue';
-
+import { sortRoutes } from '@/utils/common';
 /**
  * filter auth routes by roles
  * @param routes auth routes
@@ -16,7 +16,7 @@ export function filterAuthRoutesByRoles(routes: ElegantConstRoute[], roles: stri
     return routes;
   }
 
-  return routes.flatMap(route => filterAuthRouteByRoles(route, roles));
+  return sortRoutes(routes.flatMap(route => filterAuthRouteByRoles(route, roles)));
 }
 
 /**

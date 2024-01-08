@@ -43,7 +43,12 @@ async function handleSubmit() {
       <ElInput v-model="model.userName" :placeholder="$t('page.login.common.userNamePlaceholder')" />
     </ElFormItem>
     <ElFormItem prop="password">
-      <ElInput v-model="model.password" type="password" :placeholder="$t('page.login.common.passwordPlaceholder')" />
+      <ElInput
+        v-model="model.password"
+        type="password"
+        show-password
+        :placeholder="$t('page.login.common.passwordPlaceholder')"
+      />
     </ElFormItem>
     <ElSpace direction="vertical" :size="24" fill class="w-full">
       <div class="flex-y-center justify-between">

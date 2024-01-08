@@ -14,7 +14,6 @@ export function fetchLogin(userName: string, password: string) {
     },
     {
       loading: true
-      // isRetry: true // 重试 loading会关闭
     }
   );
 }
