@@ -15,7 +15,7 @@
 
       <slot name="title"></slot>
     </div>
-    <div class="base-box-content">
+    <div ref="contentRef" class="base-box-content">
       <ElScrollbar :style="getStyle">
         <BaseSkeleton :loading="loading" is-box>
           <slot></slot>
@@ -53,6 +53,7 @@ const props = withDefaults(defineProps<Partial<Props>>(), {
 });
 
 const baseBoxRef = ref();
+const contentRef = ref();
 
 const getStyle = computed(() => {
   const { height, maxHeight } = props;
@@ -63,7 +64,8 @@ const getStyle = computed(() => {
 });
 
 defineExpose({
-  instance: baseBoxRef
+  instance: baseBoxRef,
+  content: contentRef
 });
 </script>
 

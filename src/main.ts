@@ -6,6 +6,8 @@ import { setupStore } from './store';
 import { setupRouter } from './router';
 import { setupI18n } from './locales';
 import { setupLoadingDirective } from './directive';
+import { LoadingPlugin } from '@rascoder/vue-loading';
+
 import Root from './App.vue';
 
 async function setupApp() {
@@ -21,6 +23,7 @@ async function setupApp() {
 
   setupStore(app);
 
+  app.use(LoadingPlugin);
   await setupRouter(app);
 
   setupI18n(app);

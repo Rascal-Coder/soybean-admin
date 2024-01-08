@@ -10,12 +10,6 @@ import { sortRoutes } from '@/utils/routes';
  * @param roles roles
  */
 export function filterAuthRoutesByRoles(routes: ElegantConstRoute[], roles: string[]) {
-  const SUPER_ROLE = 'R_SUPER';
-
-  if (roles.includes(SUPER_ROLE)) {
-    return routes;
-  }
-
   return sortRoutes(routes.flatMap(route => filterAuthRouteByRoles(route, roles)));
 }
 

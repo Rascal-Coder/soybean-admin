@@ -20,6 +20,12 @@ export function transformRecordToOption<T extends Record<string, string>>(record
     label
   })) as Common.Option<keyof T>[];
 }
+export function transformedData(data: Array<string>) {
+  return data.map(item => ({
+    label: item,
+    value: item
+  }));
+}
 /**
  * 加载网络css文件
  * @param url css资源url
