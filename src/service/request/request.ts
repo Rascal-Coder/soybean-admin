@@ -1,5 +1,6 @@
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import CustomAxiosInstance from './instance';
+import type { AxiosLoading } from './hooks';
 type RequestMethod = 'get' | 'post' | 'put' | 'delete';
 
 interface RequestParam {
@@ -7,6 +8,17 @@ interface RequestParam {
   method?: RequestMethod;
   data?: any;
   axiosConfig?: AxiosRequestConfig & App.Service.RequestConfigExtra;
+}
+interface RequestResponse {
+  instance: AxiosInstance;
+  method: RequestMethod;
+  url: string;
+  data?: any;
+  config?: AxiosRequestConfig & App.Service.RequestConfigExtra;
+}
+interface LoadingParams {
+  loadingInstance: AxiosLoading;
+  isLoading: boolean | undefined;
 }
 const defaultConfig: App.Service.RequestConfigExtra = {
   cancelSame: false,
@@ -25,6 +37,7 @@ export function createRequest(
   backendConfig?: Partial<App.Service.BackendResultConfig>
 ) {
   const customInstance = new CustomAxiosInstance(axiosConfig, backendConfig ?? {});
+  const { instance, loadingInstance } = customInstance;
   /**
    * 异步promise请求
    * @param param - 请求参数
@@ -33,34 +46,33 @@ export function createRequest(
    * - data: 请求的body的data
    * - axiosConfig: axios配置
    */
-  async function asyncRequest<T>(param: RequestParam): Promise<App.Service.RequestResult<T>> {
+  async function asyncRequest<T>(param: RequestParam): Promise<App.Service.RequestResult<T> | undefined> {
     const { url } = param;
     const method = param.method || 'get';
 
-    const { instance, loadingInstance } = customInstance;
     const _axiosConfig = { ...defaultConfig, ...param.axiosConfig };
 
     const { loading } = _axiosConfig;
-    return new Promise((resolve, reject) => {
-      getRequestResponse({
-        instance,
-        method,
-        url,
-        data: param.data,
-        config: _axiosConfig
-      })
-        .then((res: App.Service.RequestResult<T>) => {
-          resolve(res);
-        })
-        .catch((e: App.Service.RequestError) => {
-          reject(e);
-        })
-        .finally(() => {
-          if (loading) {
-            loadingInstance.closeLoading();
-          }
-        });
-    });
+    try {
+      const res = (await promiseRequest(
+        {
+          instance,
+          method,
+          url,
+          data: param.data,
+          config: _axiosConfig
+        },
+        {
+          loadingInstance,
+          isLoading: loading
+        }
+      )) as App.Service.RequestResult<T>;
+
+      return res;
+    } catch (error) {
+      window.console.error('Error:', error);
+      return undefined;
+    }
   }
 
   /**
@@ -107,13 +119,8 @@ export function createRequest(
     delete: handleDelete
   };
 }
-async function getRequestResponse(params: {
-  instance: AxiosInstance;
-  method: RequestMethod;
-  url: string;
-  data?: any;
-  config?: AxiosRequestConfig & App.Service.RequestConfigExtra;
-}) {
+
+async function getRequestResponse(params: RequestResponse) {
   const { instance, method, url, data, config } = params;
   let res: any;
 
@@ -124,4 +131,25 @@ async function getRequestResponse(params: {
   }
 
   return res;
+}
+
+function promiseRequest<T>(params: RequestResponse, loadingParams: LoadingParams) {
+  const { loadingInstance, isLoading } = loadingParams;
+  return new Promise((resolve, reject) => {
+    getRequestResponse(params)
+      .then(res => {
+        resolve(res as App.Service.RequestResult<T>);
+      })
+      .catch((e: App.Service.RequestError) => {
+        if (isLoading) {
+          loadingInstance.closeLoading();
+        }
+        reject(e);
+      })
+      .finally(() => {
+        if (isLoading) {
+          loadingInstance.closeLoading();
+        }
+      });
+  });
 }

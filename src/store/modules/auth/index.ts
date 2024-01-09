@@ -46,10 +46,9 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
    */
   async function login(userName: string, password: string) {
     startLoading();
-
-    try {
-      const { data: loginToken } = await fetchLogin(userName, password);
-
+    const res = await fetchLogin(userName, password);
+    if (res) {
+      const { data: loginToken } = res;
       await loginByToken(loginToken!);
 
       await routeStore.initAuthRoute();
@@ -64,9 +63,9 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
           duration: 2000
         });
       }
-    } catch {
       resetStore();
-    } finally {
+      endLoading();
+    } else {
       endLoading();
     }
   }
@@ -75,15 +74,15 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     // 1. stored in the localStorage, the later requests need it in headers
     localStg.set('token', loginToken.token);
     localStg.set('refreshToken', loginToken.refreshToken);
+    const res = await fetchGetUserInfo();
+    if (res) {
+      // 2. store user info
+      localStg.set('userInfo', res.data!);
 
-    const { data: info } = await fetchGetUserInfo();
-
-    // 2. store user info
-    localStg.set('userInfo', info!);
-
-    // 3. update auth route
-    token.value = loginToken.token;
-    Object.assign(userInfo, info);
+      // 3. update auth route
+      token.value = loginToken.token;
+      Object.assign(userInfo, res.data!);
+    }
   }
 
   return {

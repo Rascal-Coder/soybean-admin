@@ -189,17 +189,19 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     if (!userId) {
       throw new Error('userId 不能为空!');
     }
-    const { data } = await fetchUserRoutes(userId);
+    const res = await fetchUserRoutes(userId);
 
-    // sortRoutes(data!.routes);
+    if (res) {
+      const { data } = res;
 
-    handleAuthRoutes(data!.routes);
+      handleAuthRoutes(data!.routes);
 
-    setRouteHome(data!.home);
+      setRouteHome(data!.home);
 
-    handleUpdateRootRouteRedirect(data!.home);
+      handleUpdateRootRouteRedirect(data!.home);
 
-    setIsInitAuthRoute(true);
+      setIsInitAuthRoute(true);
+    }
   }
 
   /**

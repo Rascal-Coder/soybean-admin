@@ -7,10 +7,6 @@
       <ElButton type="primary" class="mb5" @click="handleDelete">触发一个delete请求(失败不会提示)</ElButton>
     </BaseBox>
 
-    <BaseBox title="所有接口请求完成才会关闭loading">
-      <ElButton type="primary" class="mb5" @click="handleInitApi">点击进行触发请求</ElButton>
-    </BaseBox>
-
     <BaseBox title="取消重复请求">
       <ElButton type="primary" class="mb5" @click="handleSameApi">触发5个重复请求</ElButton>
     </BaseBox>
@@ -69,22 +65,6 @@ const handlePut = async () => {
 
 const handleDelete = async () => {
   await deleteTestApi();
-};
-
-const handleInitApi = async () => {
-  handleGet();
-  setTimeout(() => {
-    handleGet();
-  }, 100);
-  setTimeout(() => {
-    handleGet();
-  }, 200);
-  setTimeout(() => {
-    handleGet();
-  }, 300);
-  setTimeout(() => {
-    handleGet();
-  }, 400);
 };
 
 const handleSameApi = () => {
