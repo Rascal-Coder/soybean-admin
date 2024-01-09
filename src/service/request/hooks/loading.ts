@@ -1,20 +1,23 @@
-import { useLoading } from '@/hooks';
-import { LoadingEnum } from '@/enum';
+import { useLoading } from '@rascoder/vue-loading';
+import type { ActiveLoader } from '@rascoder/vue-loading';
+import { defaultLoadingProps } from '@/constants';
 const loading = useLoading({
-  spin: LoadingEnum.CHASE,
-  minTime: 500
+  ...defaultLoadingProps
 });
-
+let loader: ActiveLoader;
 export class AxiosLoading {
   loadingCount: number;
 
+  isShowing: boolean;
+
   constructor() {
     this.loadingCount = 0;
+    this.isShowing = false;
   }
 
   addLoading() {
     if (this.loadingCount === 0) {
-      loading.open();
+      loader = loading.show();
     }
     this.loadingCount++;
   }
@@ -22,7 +25,7 @@ export class AxiosLoading {
   closeLoading() {
     if (this.loadingCount > 0) {
       if (this.loadingCount === 1) {
-        loading.close();
+        loader && loader.hide();
       }
       this.loadingCount--;
     }

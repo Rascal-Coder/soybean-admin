@@ -22,8 +22,8 @@ importers:
         specifier: 4.1.1
         version: 4.1.1(vue@3.3.8)
       '@rascoder/vue-loading':
-        specifier: 6.1.2-beta
-        version: 6.1.2-beta(vue@3.3.8)
+        specifier: 6.1.5
+        version: 6.1.5(vue@3.3.8)
       '@sa/color-palette':
         specifier: workspace:*
         version: link:packages/color-palette
@@ -1399,8 +1399,8 @@ packages:
     resolution: {integrity: sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==}
     dev: true
 
-  /@rascoder/vue-loading@6.1.2-beta(vue@3.3.8):
-    resolution: {integrity: sha512-a+QfJvbmfT154HeBx8onWuMEEi+x7OEscBPsHJNDT3L/xXW4rFRYqQnEbRlqAppLOIAAm0yCLULJQV5AYWwEnA==}
+  /@rascoder/vue-loading@6.1.5(vue@3.3.8):
+    resolution: {integrity: sha512-EnUAnS8i0KIwQk7Zt+ddcBjmBQ4ipb9ZRDS2zagSgICWmgglcuQnlcj9O2C1ngtMQJ32HmGVNuB7q5MvRHxbkw==}
     engines: {node: '>=12.13.0'}
     peerDependencies:
       vue: ^3.2.0

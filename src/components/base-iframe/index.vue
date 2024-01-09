@@ -1,5 +1,5 @@
 <template>
-  <div v-sa-loading="loading" class="h-full relative" :loading-full="false">
+  <div v-ra-loading="loading" class="h-full relative" :loading-full="false">
     <iframe class="wh-full" :src="src" @load="handleIframeLoad"></iframe>
   </div>
 </template>

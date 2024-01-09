@@ -1,45 +1,43 @@
 import type { Directive, App } from 'vue';
-import { useLoading } from '@/hooks';
-import BaseLoading from '@/components/base-loading/index.vue';
-
+import { useLoading } from '@rascoder/vue-loading';
+import type { PluginApi, AnimationType } from '@rascoder/vue-loading';
+import { defaultLoadingProps } from '@/constants';
 const loadingDirective: Directive = {
-  mounted(el, bind) {
-    const { props } = BaseLoading;
-
-    const full = el.getAttribute('loading-full');
-    const text = el.getAttribute('loading-text') || props.text.default;
-    const textColor = el.getAttribute('loading-text-color') || props.textColor.default;
-    const background = el.getAttribute('loading-background') || props.background.default;
-    const spin = el.getAttribute('loading-spin') || props.spin.default;
+  mounted(ele, bind) {
+    const full = ele.getAttribute('loading-full');
+    const backgroundColor = ele.getAttribute('loading-background') || defaultLoadingProps.backgroundColor;
+    const loader: AnimationType = ele.getAttribute('loading-loader') || defaultLoadingProps.loader;
+    const color = ele.getAttribute('loading-color') || defaultLoadingProps.color;
 
     const instance = useLoading({
-      text,
-      textColor,
-      background,
-      spin
+      ...defaultLoadingProps,
+      backgroundColor,
+      loader,
+      color,
+      container: ele
     });
-    el.instance = instance;
-
+    ele.instance = instance;
     if (bind.value) {
-      instance.open(full ? document.body : el);
+      instance.show({
+        container: full ? null : ele
+      });
     }
   },
-  updated(el, bind) {
-    const instance = el.instance;
+  updated(ele, bind) {
+    const instance = ele.instance as PluginApi;
     if (!instance) return;
     if (bind.value) {
-      instance.open(el.getAttribute('loading-full') === 'true' ? document.body : el);
+      instance.show({
+        container: ele.getAttribute('loading-full') === 'true' ? null : ele
+      });
     } else {
-      instance.close();
+      instance.hide();
     }
-  },
-  unmounted(el) {
-    el?.instance?.close();
   }
 };
 
 export const setupLoadingDirective = (app: App) => {
-  app.directive('sa-loading', loadingDirective);
+  app.directive('ra-loading', loadingDirective);
 };
 
 export default loadingDirective;
