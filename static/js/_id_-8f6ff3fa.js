@@ -1,0 +1,1 @@
+import{_ as e}from"./look-forward.vue_vue_type_script_setup_true_lang-b45b6676.js";import{k as r,o as n,c as t}from"./index-756c0a30.js";const m=r({__name:"[id]",props:{id:{}},setup(_){return(a,c)=>{const o=e;return n(),t(o)}}});export{m as default};
