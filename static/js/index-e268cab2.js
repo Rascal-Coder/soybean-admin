@@ -1,0 +1,1 @@
+import{_ as o}from"./index-d0c5212c.js";import{_ as t,o as n,s,I as c}from"./index-49216138.js";const _={},r={class:"h-full"};function a(i,l){const e=o;return n(),s("div",r,[c(e,{title:"权限测试"})])}const p=t(_,[["render",a]]);export{p as default};
