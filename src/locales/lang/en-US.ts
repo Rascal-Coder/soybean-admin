@@ -135,7 +135,10 @@ const local: App.I18n.Schema = {
     'document_project-link': 'Project Document(Link)',
     function: 'Function',
     function_axios: 'Axios',
-    function_loading: 'Loading'
+    function_loading: 'Loading',
+    'auth-demo_permission': 'Toggle Permission',
+    'auth-demo': 'Auth Demo',
+    'auth-demo_super': 'Super Auth'
   },
   page: {
     login: {

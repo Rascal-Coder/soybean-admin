@@ -20,6 +20,9 @@ declare module "@elegant-router/types" {
     "403": "/403";
     "404": "/404";
     "500": "/500";
+    "auth-demo": "/auth-demo";
+    "auth-demo_permission": "/auth-demo/permission";
+    "auth-demo_super": "/auth-demo/super";
     "document": "/document";
     "document_element-plus": "/document/element-plus";
     "document_project-link": "/document/project-link";
@@ -80,6 +83,7 @@ declare module "@elegant-router/types" {
     | "403"
     | "404"
     | "500"
+    | "auth-demo"
     | "document"
     | "exception"
     | "function"
@@ -108,6 +112,8 @@ declare module "@elegant-router/types" {
     | "404"
     | "500"
     | "login"
+    | "auth-demo_permission"
+    | "auth-demo_super"
     | "document_element-plus"
     | "document_project-link"
     | "document_vite"

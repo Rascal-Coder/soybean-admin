@@ -48,6 +48,9 @@ importers:
       clipboard:
         specifier: 2.0.11
         version: 2.0.11
+      css-doodle:
+        specifier: ^0.38.3
+        version: 0.38.3
       dayjs:
         specifier: ^1.11.10
         version: 1.11.10
@@ -3340,6 +3343,10 @@ packages:
     dependencies:
       type-fest: 1.4.0
     dev: true
+
+  /css-doodle@0.38.3:
+    resolution: {integrity: sha512-JP/u8m5ZBxNiaauAjcikj+ffLaavMBXRyYYchzftt5qDaQy3c9+sak+uCIVq5jn0AasdRG2+Mpg2nLi/ruPvxA==}
+    dev: false
 
   /css-select@4.3.0:
     resolution: {integrity: sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==}

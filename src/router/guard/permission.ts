@@ -27,7 +27,7 @@ export function createPermissionGuard(router: Router) {
     const loginRoute: RouteKey = 'login';
     const noPermissionRoute: RouteKey = '403';
 
-    const SUPER_ADMIN = 'R_SUPER';
+    const SUPER_ADMIN = 'super';
     const hasPermission =
       !routeRoles.length ||
       authStore.userInfo.roles.includes(SUPER_ADMIN) ||

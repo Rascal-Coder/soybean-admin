@@ -7,9 +7,7 @@ import { setupRouter } from './router';
 import { setupI18n } from './locales';
 import { setupLoadingDirective } from './directive';
 import { LoadingPlugin } from '@rascoder/vue-loading';
-
 import Root from './App.vue';
-
 async function setupApp() {
   setupNProgress();
 

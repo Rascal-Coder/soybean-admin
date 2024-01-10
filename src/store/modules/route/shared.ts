@@ -21,16 +21,13 @@ export function filterAuthRoutesByRoles(routes: ElegantConstRoute[], roles: stri
 function filterAuthRouteByRoles(route: ElegantConstRoute, roles: string[]) {
   const routeRoles = (route.meta && route.meta.roles) || [];
 
-  if (!routeRoles.length) {
-    return [route];
-  }
-
-  const hasPermission = routeRoles.some(role => roles.includes(role));
+  const hasPermission = !routeRoles.length || routeRoles.some(role => roles.includes(role));
 
   const filterRoute = { ...route };
 
   if (filterRoute.children?.length) {
     filterRoute.children = filterRoute.children.flatMap(item => filterAuthRouteByRoles(item, roles));
+    Object.assign(filterRoute, { children: filterRoute.children });
   }
 
   return hasPermission ? [filterRoute] : [];

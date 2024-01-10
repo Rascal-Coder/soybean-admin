@@ -37,6 +37,39 @@ export const generatedRoutes: GeneratedRoute[] = [
     }
   },
   {
+    name: 'auth-demo',
+    path: '/auth-demo',
+    component: 'layout.base',
+    meta: {
+      title: 'auth-demo',
+      i18nKey: 'route.auth-demo',
+			icon: 'ic:baseline-security',
+    },
+    children: [
+      {
+        name: 'auth-demo_permission',
+        path: '/auth-demo/permission',
+        component: 'view.auth-demo_permission',
+        meta: {
+          title: 'auth-demo_permission',
+          i18nKey: 'route.auth-demo_permission',
+					icon: 'ic:round-construction'
+        }
+      },
+      {
+        name: 'auth-demo_super',
+        path: '/auth-demo/super',
+        component: 'view.auth-demo_super',
+        meta: {
+          title: 'auth-demo_super',
+          i18nKey: 'route.auth-demo_super',
+					roles: ['super'],
+					icon: 'ic:round-supervisor-account'
+        }
+      }
+    ]
+  },
+  {
     name: 'document',
     path: '/document',
     component: 'layout.base',
@@ -200,7 +233,7 @@ export const generatedRoutes: GeneratedRoute[] = [
       i18nKey: 'route.manage',
       icon: 'carbon:cloud-service-management',
       order: 9,
-      roles: ['R_ADMIN']
+      roles: ['admin']
     },
     children: [
       {
@@ -212,7 +245,7 @@ export const generatedRoutes: GeneratedRoute[] = [
           i18nKey: 'route.manage_role',
           icon: 'carbon:user-role',
           order: 2,
-          roles: ['R_ADMIN']
+          roles: ['admin']
         }
       },
       {
@@ -224,7 +257,7 @@ export const generatedRoutes: GeneratedRoute[] = [
           i18nKey: 'route.manage_route',
           icon: 'material-symbols:route',
           order: 3,
-          roles: ['R_ADMIN'],
+          roles: ['admin'],
           keepAlive: true
         }
       },
@@ -237,7 +270,7 @@ export const generatedRoutes: GeneratedRoute[] = [
           i18nKey: 'route.manage_user',
           icon: 'ic:round-manage-accounts',
           order: 1,
-          roles: ['R_ADMIN']
+          roles: ['admin']
         }
       },
       {
@@ -249,7 +282,7 @@ export const generatedRoutes: GeneratedRoute[] = [
           title: 'manage_user-detail',
           i18nKey: 'route.manage_user-detail',
           hideInMenu: true,
-          roles: ['R_ADMIN'],
+          roles: ['admin'],
           activeMenu: 'manage_user'
         }
       }

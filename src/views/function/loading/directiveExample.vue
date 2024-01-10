@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <BaseBox title="指令方式加载loading" class="relative">
-      <div v-ra-loading="loading" loading-loader="RotateSquare3" :loading-full="full">
-        <ElButton type="primary" @click="startCustomLoading(0)">v-custom-loading指令非全屏</ElButton>
-        <ElButton type="primary" @click="startCustomLoading(1)">v-custom-loading指令全屏</ElButton>
-      </div>
-    </BaseBox>
-  </div>
+  <BaseBox title="指令方式加载loading" class="relative">
+    <div v-ra-loading="loading" loading-loader="RotateSquare3" :loading-full="full">
+      <ElButton type="primary" @click="startCustomLoading(0)">v-custom-loading指令非全屏</ElButton>
+      <ElButton type="primary" @click="startCustomLoading(1)">v-custom-loading指令全屏</ElButton>
+    </div>
+  </BaseBox>
 </template>
 
 <script setup lang="ts">

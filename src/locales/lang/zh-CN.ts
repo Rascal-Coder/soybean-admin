@@ -135,7 +135,10 @@ const local: App.I18n.Schema = {
     'document_project-link': '项目文档(外链)',
     function: '功能',
     function_axios: 'Axios',
-    function_loading: 'Loading'
+    function_loading: 'Loading',
+    'auth-demo_permission': '权限切换',
+    'auth-demo': '权限示例',
+    'auth-demo_super': '超级管理员可见'
   },
   page: {
     login: {

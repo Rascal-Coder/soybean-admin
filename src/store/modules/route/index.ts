@@ -173,8 +173,6 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
 
     const filteredAuthRoutes = filterAuthRoutesByRoles(authRoutes, authStore.userInfo.roles);
 
-    // sortRoutes(filteredAuthRoutes);
-
     handleAuthRoutes(filteredAuthRoutes);
 
     setIsInitAuthRoute(true);
