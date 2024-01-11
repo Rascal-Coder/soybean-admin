@@ -11,7 +11,8 @@ export const userModel: UserModel[] = [
     userId: '0',
     userName: 'Soybean',
     roles: ['super'],
-    password: 'soybean123'
+    password: 'soybean123',
+    permissions: ['permission.browse', 'permission.create', 'permission.edit', 'permission.remove']
   },
   {
     token: '__TOKEN_SUPER__',
@@ -19,15 +20,17 @@ export const userModel: UserModel[] = [
     userId: '1',
     userName: 'Super',
     roles: ['super'],
-    password: 'super123'
+    password: 'super123',
+    permissions: ['permission.browse', 'permission.create', 'permission.edit', 'permission.remove']
   },
   {
     token: '__TOKEN_ADMIN__',
     refreshToken: '__REFRESH_TOKEN_ADMIN__',
     userId: '2',
     userName: 'Admin',
-    roles: ['admin', 'user'],
-    password: 'admin123'
+    roles: ['admin'],
+    password: 'admin123',
+    permissions: ['permission.browse']
   },
   {
     token: '__TOKEN_USER01__',
@@ -35,6 +38,7 @@ export const userModel: UserModel[] = [
     userId: '3',
     userName: 'User01',
     roles: ['user'],
-    password: 'user01123'
+    password: 'user01123',
+    permissions: []
   }
 ];

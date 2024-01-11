@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppLoading: typeof import('./../components/common/app-loading.vue')['default']
     BaseBox: typeof import('./../components/base-box/index.vue')['default']
+    BaseButton: typeof import('./../components/base-button/index.vue')['default']
     BaseIframe: typeof import('./../components/base-iframe/index.vue')['default']
     BaseLoading: typeof import('./../components/base-loading/index.vue')['default']
     BaseSkeleton: typeof import('./../components/base-skeleton/index.vue')['default']
@@ -44,6 +45,7 @@ declare module 'vue' {
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']

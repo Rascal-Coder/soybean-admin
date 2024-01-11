@@ -14,7 +14,8 @@ export function getUserInfo() {
   const emptyInfo: Api.Auth.UserInfo = {
     userId: '',
     userName: '',
-    roles: []
+    roles: [],
+    permissions: []
   };
   const userInfo = localStg.get('userInfo') || emptyInfo;
 

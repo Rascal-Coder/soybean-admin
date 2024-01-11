@@ -48,13 +48,14 @@ export default [
       const userInfo: Api.Auth.UserInfo = {
         userId: '',
         userName: '',
-        roles: ['user']
+        roles: ['user'],
+        permissions: []
       };
       const isInUser = userModel.some(item => {
         const flag = `Bearer ${item.token}` === authorization;
         if (flag) {
-          const { userId: itemUserId, userName, roles } = item;
-          Object.assign(userInfo, { userId: itemUserId, userName, roles });
+          const { userId: itemUserId, userName, roles, permissions } = item;
+          Object.assign(userInfo, { userId: itemUserId, userName, roles, permissions });
         }
         return flag;
       });

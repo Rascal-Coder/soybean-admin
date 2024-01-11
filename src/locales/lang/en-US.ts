@@ -136,7 +136,7 @@ const local: App.I18n.Schema = {
     function: 'Function',
     function_axios: 'Axios',
     function_loading: 'Loading',
-    'auth-demo_permission': 'Toggle Permission',
+    'auth-demo_permission': 'Button Permission',
     'auth-demo': 'Auth Demo',
     'auth-demo_super': 'Super Auth'
   },

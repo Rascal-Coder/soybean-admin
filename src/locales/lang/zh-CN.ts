@@ -136,7 +136,7 @@ const local: App.I18n.Schema = {
     function: '功能',
     function_axios: 'Axios',
     function_loading: 'Loading',
-    'auth-demo_permission': '权限切换',
+    'auth-demo_permission': '按钮权限',
     'auth-demo': '权限示例',
     'auth-demo_super': '超级管理员可见'
   },

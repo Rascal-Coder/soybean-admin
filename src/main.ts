@@ -5,7 +5,7 @@ import { setupNProgress, setupIconifyOffline, setupDayjs, setupGlobalUtils } fro
 import { setupStore } from './store';
 import { setupRouter } from './router';
 import { setupI18n } from './locales';
-import { setupLoadingDirective } from './directive';
+import { setupLoadingDirective, setupPermissionDirective } from './directive';
 import { LoadingPlugin } from '@rascoder/vue-loading';
 import Root from './App.vue';
 async function setupApp() {
@@ -33,5 +33,8 @@ async function setupApp() {
 function setupDirective(app: App) {
   // 注册loading自定义指令
   setupLoadingDirective(app);
+
+  // 注册permission自定义指令
+  setupPermissionDirective(app);
 }
 setupApp();

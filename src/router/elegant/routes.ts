@@ -43,7 +43,7 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'auth-demo',
       i18nKey: 'route.auth-demo',
-			icon: 'ic:baseline-security',
+      icon: 'ic:baseline-security'
     },
     children: [
       {
@@ -53,7 +53,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'auth-demo_permission',
           i18nKey: 'route.auth-demo_permission',
-					icon: 'ic:round-construction'
+          icon: 'ic:round-construction'
         }
       },
       {
@@ -63,8 +63,8 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'auth-demo_super',
           i18nKey: 'route.auth-demo_super',
-					roles: ['super'],
-					icon: 'ic:round-supervisor-account'
+          roles: ['super'],
+          icon: 'ic:round-supervisor-account'
         }
       }
     ]
