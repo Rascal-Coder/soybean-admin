@@ -58,7 +58,7 @@ const cls = computed(() => {
 <template>
   <!-- define component: Button -->
   <DefineButton v-slot="{ $slots, className }">
-    <ElButton text :class="className">
+    <ElButton text :class="className" :autofocus="false">
       <div class="flex-center">
         <component :is="$slots.default" />
       </div>

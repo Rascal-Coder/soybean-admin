@@ -30,5 +30,6 @@ export const router = createRouter({
 export async function setupRouter(app: App) {
   app.use(router);
   createRouterGuard(router);
+
   await router.isReady();
 }

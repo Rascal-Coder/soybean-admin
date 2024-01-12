@@ -16,13 +16,13 @@ import {
   getCacheRouteNames,
   isRouteExistByRouteName,
   getSelectedMenuKeyPathByKey,
-  getBreadcrumbsByRoute
+  getBreadcrumbsByRoute,
+  transformAuthRouteToSearchMenus
 } from './shared';
 import { useAppStore } from '../app';
 import { useAuthStore } from '../auth';
 import { useTabStore } from '../tab';
 import { localStg } from '@/utils/storage';
-
 export const useRouteStore = defineStore(SetupStoreId.Route, () => {
   const appStore = useAppStore();
   const authStore = useAuthStore();
@@ -201,7 +201,7 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
       setIsInitAuthRoute(true);
     }
   }
-
+  const searchMenus = ref<ElegantConstRoute[]>([]);
   /**
    * handle routes
    * @param routes auth routes
@@ -212,7 +212,7 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     addRoutesToVueRouter(vueRoutes);
 
     getGlobalMenus(routes);
-
+    searchMenus.value = transformAuthRouteToSearchMenus(routes);
     getCacheRoutes(vueRoutes);
   }
 
@@ -290,6 +290,7 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     isInitAuthRoute,
     setIsInitAuthRoute,
     getIsAuthRouteExist,
-    getSelectedMenuKeyPath
+    getSelectedMenuKeyPath,
+    searchMenus
   };
 });

@@ -261,3 +261,21 @@ export function getBreadcrumbsByRoute(
 
   return [];
 }
+
+/**
+ * 将权限路由转换成搜索的菜单数据
+ * @param routes - 权限路由
+ * @param treeMap
+ */
+export function transformAuthRouteToSearchMenus(routes: ElegantConstRoute[], treeMap: ElegantConstRoute[] = []) {
+  if (routes && routes.length === 0) return [];
+  return routes.reduce((acc, cur) => {
+    if (!cur.meta?.hideInMenu) {
+      acc.push(cur);
+    }
+    if (cur.children && cur.children.length > 0) {
+      transformAuthRouteToSearchMenus(cur.children, treeMap);
+    }
+    return acc;
+  }, treeMap);
+}

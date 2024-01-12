@@ -44,7 +44,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
    * @param userName user name
    * @param password password
    */
-  async function login(userName: string, password: string) {
+  async function login(userName: string, password: string, isChangeAccount: boolean = false) {
     startLoading();
     const res = await fetchLogin(userName, password);
     if (res) {
@@ -53,7 +53,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
       await routeStore.initAuthRoute();
 
-      await redirectFromLogin();
+      !isChangeAccount && (await redirectFromLogin());
 
       if (routeStore.isInitAuthRoute) {
         ElNotification({

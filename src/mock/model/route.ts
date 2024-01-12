@@ -12,7 +12,40 @@ export const routeModel: Record<Business.Auth.RoleType, GeneratedRoute[]> = {
         order: 1
       }
     },
-
+    {
+      name: 'auth-demo',
+      path: '/auth-demo',
+      component: 'layout.base',
+      meta: {
+        title: 'auth-demo',
+        i18nKey: 'route.auth-demo',
+        icon: 'ic:baseline-security',
+        order: 5
+      },
+      children: [
+        {
+          name: 'auth-demo_permission',
+          path: '/auth-demo/permission',
+          component: 'view.auth-demo_permission',
+          meta: {
+            title: 'auth-demo_permission',
+            i18nKey: 'route.auth-demo_permission',
+            icon: 'ic:round-construction'
+          }
+        },
+        {
+          name: 'auth-demo_super',
+          path: '/auth-demo/super',
+          component: 'view.auth-demo_super',
+          meta: {
+            title: 'auth-demo_super',
+            i18nKey: 'route.auth-demo_super',
+            roles: ['super'],
+            icon: 'ic:round-supervisor-account'
+          }
+        }
+      ]
+    },
     {
       name: 'exception',
       path: '/exception',
@@ -20,7 +53,7 @@ export const routeModel: Record<Business.Auth.RoleType, GeneratedRoute[]> = {
       meta: {
         title: 'exception',
         i18nKey: 'route.exception',
-        order: 5,
+        order: 4,
         icon: 'ant-design:exception-outlined'
       },
       children: [
@@ -229,8 +262,7 @@ export const routeModel: Record<Business.Auth.RoleType, GeneratedRoute[]> = {
         title: 'manage',
         i18nKey: 'route.manage',
         icon: 'carbon:cloud-service-management',
-        order: 9,
-        roles: ['R_ADMIN']
+        order: 9
       },
       children: [
         {
@@ -241,8 +273,7 @@ export const routeModel: Record<Business.Auth.RoleType, GeneratedRoute[]> = {
             title: 'manage_role',
             i18nKey: 'route.manage_role',
             icon: 'carbon:user-role',
-            order: 2,
-            roles: ['R_ADMIN']
+            order: 2
           }
         },
         {
@@ -254,7 +285,6 @@ export const routeModel: Record<Business.Auth.RoleType, GeneratedRoute[]> = {
             i18nKey: 'route.manage_route',
             icon: 'material-symbols:route',
             order: 3,
-            roles: ['R_ADMIN'],
             keepAlive: true
           }
         },
@@ -266,8 +296,7 @@ export const routeModel: Record<Business.Auth.RoleType, GeneratedRoute[]> = {
             title: 'manage_user',
             i18nKey: 'route.manage_user',
             icon: 'ic:round-manage-accounts',
-            order: 1,
-            roles: ['R_ADMIN']
+            order: 1
           }
         },
         {
@@ -279,7 +308,6 @@ export const routeModel: Record<Business.Auth.RoleType, GeneratedRoute[]> = {
             title: 'manage_user-detail',
             i18nKey: 'route.manage_user-detail',
             hideInMenu: true,
-            roles: ['R_ADMIN'],
             activeMenu: 'manage_user'
           }
         }
