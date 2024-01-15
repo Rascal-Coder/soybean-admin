@@ -1,0 +1,1 @@
+import{_ as o}from"./index.vue_vue_type_script_setup_true_lang-e98e7276.js";import{k as t,r as n,o as r,c}from"./index-4e05fb4b.js";const i=t({__name:"index",setup(a){const e=n("https://element-plus.gitee.io/zh-CN/");return(_,m)=>{const s=o;return r(),c(s,{src:e.value},null,8,["src"])}}});export{i as default};
