@@ -1,1 +1,0 @@
-import{_ as o}from"./index-53666d3d.js";import{_ as n,o as s,s as t,I as c}from"./index-4e05fb4b.js";const _={};function r(a,l){const e=o;return s(),t("div",null,[c(e,{class:"h-full",title:"当前页面只有super才能看到"})])}const i=n(_,[["render",r]]);export{i as default};
