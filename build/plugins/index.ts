@@ -7,18 +7,18 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 import { setupElegantRouter } from './router';
 import { setupUnocss } from './unocss';
 import { setupUnplugin } from './unplugin';
-import { setupBuildInfo } from './buildInfo';
-import { setupCompression } from './compression';
-import { setupImagemin } from './imagemin';
+// import { setupBuildInfo } from './buildInfo';
+// import { setupCompression } from './compression';
+// import { setupImagemin } from './imagemin';
 import { setupMock } from './mock';
-import { setupCDN } from './cdn';
+// import { setupCDN } from './cdn';
 
-import { setupVisualizer } from './visualizer';
+// import { setupVisualizer } from './visualizer';
 export function setupVitePlugins(viteEnv: Env.ImportMeta, isBuild: boolean) {
-  const { VITE_APP_TITLE, VITE_BUILD_IMAGEMIN, VITE_BUILD_REPORT, VITE_CDN } = viteEnv;
-  const isBuildImagemin = VITE_BUILD_IMAGEMIN === 'Y';
-  const isReport = VITE_BUILD_REPORT === 'Y';
-  const isCdn = VITE_CDN === 'Y';
+  const { VITE_APP_TITLE } = viteEnv;
+  // const isBuildImagemin = VITE_BUILD_IMAGEMIN === 'Y';
+  // const isReport = VITE_BUILD_REPORT === 'Y';
+  // const isCdn = VITE_CDN === 'Y';
   const plugins = [
     vue({
       script: {
@@ -41,16 +41,16 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, isBuild: boolean) {
       }
     }),
     // 打包信息插件
-    setupBuildInfo(),
+    // setupBuildInfo(),
     setupElegantRouter(),
     setupUnocss(viteEnv),
     setupMock(isBuild),
     ...setupUnplugin(viteEnv),
-    progress(),
-    isReport ? setupVisualizer() : null,
-    isCdn ? setupCDN : null,
-    isBuild ? setupCompression(viteEnv) : null,
-    isBuildImagemin && isBuild ? setupImagemin() : null
+    progress()
+    // isReport ? setupVisualizer() : null,
+    // isCdn ? setupCDN : null,
+    // isBuild ? setupCompression(viteEnv) : null,
+    // isBuildImagemin && isBuild ? setupImagemin() : null
   ];
   return plugins;
 }
